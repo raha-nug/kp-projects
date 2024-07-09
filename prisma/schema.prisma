@@ -1,0 +1,66 @@
+
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+
+model Pemohon{
+  id Int @id @default(autoincrement())
+  name String
+  phone_number String
+  email String 
+  instansi Instansi @relation(fields: [instansi_id], references: [id])
+  instansi_id Int @unique
+  permohonan Permohonan?
+}
+
+model Instansi{
+  id Int @id @default(autoincrement())
+  name String
+  pemohon Pemohon?
+}
+
+model Permohonan{
+  id Int @id @default(autoincrement())
+  uuid String @unique
+  date DateTime @default(now())
+  file_url String
+  type Type @relation(fields: [type_id], references: [id])
+  pemohon Pemohon @relation(fields: [pemohon_id], references: [id])
+  status Status @relation(fields: [status_id], references: [id])
+  type_id Int @unique
+  pemohon_id Int @unique
+  status_id Int @unique
+}
+
+model Type{
+  id Int @id @default(autoincrement())
+  name String
+  permohonan Permohonan?
+}
+
+model Status{
+  id Int @id @default(autoincrement())
+  date DateTime @default(now())
+  permohonan Permohonan?
+  process_on Role @relation(fields: [process_on_id], references: [id])
+  process_on_id Int @unique
+}
+
+model Berita_acara{
+  id Int @id @default(autoincrement())
+  date DateTime @default(now())
+  
+}
+
+model Role{
+  id Int @id @default(autoincrement())
+  type String
+  status Status?
+}

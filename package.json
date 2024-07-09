@@ -1,0 +1,19 @@
+{
+  "name": "kp-projects",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@prisma/client": "^5.16.1",
+    "express": "^4.19.2",
+    "prisma": "^5.16.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.4"
+  }
+}
