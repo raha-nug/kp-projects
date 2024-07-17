@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- <link rel="stylesheet" href="/css/bootstrap.min.css" /> -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Dashboad</title>
+  </head>
+  <body>
+    <header>
+      <h1>Portal Layanan Dishubkominfo</h1>
+      <span>Kabupaten Tasikmalaya</span>
+      <a href="#bidang">Explore</a>
+    </header>
+    <main>
+      <h2 id="bidang">Daftar Bidang</h2>
+      <div class="container">
+        <a href="/sapras">
+          <div class="card">
+            <span>Sarana Prasarana</span>
+          </div>
+        </a>
+
+        <a href="/lalin">
+          <div class="card">
+            <span>Lalu lintas</span>
+          </div>
+        </a>
+        <a href="/angkutan">
+          <div class="card">
+            <span>Angkutan</span>
+          </div>
+        </a>
+        <a href="/ikp">
+          <div class="card">
+            <span>Informasi Komunikasi Publik</span>
+          </div>
+        </a>
+        <a href="/ip">
+          <div class="card">
+            <span>Informatika Persandian</span>
+          </div>
+        </a>
+        <a href="/uptd">
+          <div class="card">
+            <span>UPTD</span>
+          </div>
+        </a>
+      </div>
+    </main>
+    <footer>
+      &copy; Dishubkominfo Kab. Tasikmalaya
+      <span id="date"></span>
+    </footer>
+    <!-- <script src="/js/bootstrap.bundle.min.js"></script> -->
+
+    <script>
+      const dateContainer = document.getElementById("date");
+      const currentDate = new Date().getFullYear();
+      dateContainer.innerHTML = currentDate;
+    </script>
+  </body>
+</html>

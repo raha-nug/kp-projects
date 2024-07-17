@@ -1,18 +1,20 @@
 const express = require("express");
-const { permohonanRouter } = require("./routes/permohonan");
+const { ipRouter } = require("./routes/ip.routes");
 const app = express();
 
 
-
+app.use(express.urlencoded())
 app.use(express.static("public"));
+app.set('view engine', 'ejs')
 
-app.use('/permohonan',permohonanRouter)
+
+app.use("/css", express.static(__dirname + "/node_modules/bootstrap/dist/css"));
+app.use("/js", express.static(__dirname + "/node_modules/bootstrap/dist/js"));
+app.use('/ip',ipRouter)
 
 
 app.get("/", (req, res) => {
-  res.send({
-    message: "Welcome to kp projects app",
-  });
+  res.render('index')
 });
 
 
