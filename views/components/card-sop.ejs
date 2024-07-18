@@ -1,0 +1,22 @@
+<div class="container-fluid mt-5 pt-5 d-flex justify-content-center">
+  <div class="card" style="width: 50rem">
+    <% sop.forEach((item)=>{ %>
+
+    <div class="card-header text-center">
+      <b><%= item.title %></b>
+    </div>
+
+    <div class="card-body">
+      <div class="wpb_wrapper">
+        <ol>
+          <% item.data.forEach((sopItem)=>{ %>
+          <li><%= sopItem %></li>
+
+          <% }) %>
+        </ol>
+      </div>
+    </div>
+
+    <% }) %>
+  </div>
+</div>

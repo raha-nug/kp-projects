@@ -15,8 +15,8 @@ model Users {
   name String
   email String @unique
   password String
-  role Roles @relation(fields: [role_id], references: [id])
-  role_id Int
+  role Roles @relation(fields: [role_type], references: [type])
+  role_type String
   instansi Instansi?
 }
 

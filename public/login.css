@@ -57,3 +57,8 @@ body {
 .carousel-caption {
   top: 35%;
 }
+
+
+.text-header{
+  text-shadow: 0px 0px 50px rgba(0,0,0,1);
+}

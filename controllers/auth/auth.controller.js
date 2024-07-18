@@ -16,17 +16,38 @@ const loginUser = async (req, res) => {
       res.send({
         message: "Email tidak ditemukan",
       });
+      return;
     }
 
     bcrypt.compare(password, user.password, (err, result) => {
       if (err) throw err;
 
       if (result) {
-        res.send({ message: "Login berhasil" });
+        req.session.loggedin = true;
+        req.session.email = user.email;
+        req.session.role = user.role_type;
+
+        if (user.role_type === "ADMIN") {
+          res.render("dashboard-admin");
+          return;
+        } else if (user.role_type === "PEMOHON") {
+          res.render("dashboard-instansi");
+          return;
+        } else if (user.role_type === "OPERATOR") {
+          res.render("dashboard-operator");
+          return;
+        } else if (user.role_type === "KABID") {
+          res.render("dashboard-kabid");
+          return;
+        } else {
+          res.status(403).send("Forbidden: Anda tidak memiliki akses");
+          return;
+        }
       } else {
         res.send({
           message: "Password salah",
         });
+        return;
       }
     });
   } catch (error) {
@@ -39,7 +60,7 @@ const loginUser = async (req, res) => {
 // create user pemohon
 
 const createUser = async (req, res) => {
-  const { password, role_id, email } = req.body;
+  const { password, role_type, email } = req.body;
 
   const isEmailExist = await prisma.users.findUnique({
     where: {
@@ -56,7 +77,7 @@ const createUser = async (req, res) => {
 
   const isRoleExsist = await prisma.roles.findUnique({
     where: {
-      id: Number(role_id),
+      type: role_type,
     },
   });
 
@@ -74,7 +95,7 @@ const createUser = async (req, res) => {
 
   const data = {
     ...req.body,
-    role_id: Number(role_id),
+    role_type: role_type,
     password: hashedPass,
   };
 
@@ -86,9 +107,20 @@ const createUser = async (req, res) => {
     status: 201,
     data: {
       user: user.name,
-      role_id: user.role_id,
+      role_type: user.role_type,
     },
   });
 };
 
-module.exports = { loginUser, createUser };
+
+const logout = async (req, res)=>{
+  req.session.destroy((err) => {
+    if (err) {
+      return res.send("Gagal menghapus session");
+    }
+    res.clearCookie("connect.sid");
+    res.redirect("/login");
+  });
+}
+
+module.exports = { loginUser, createUser, logout };
