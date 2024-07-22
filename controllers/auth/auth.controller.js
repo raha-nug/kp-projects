@@ -28,16 +28,16 @@ const loginUser = async (req, res) => {
         req.session.role = user.role_type;
 
         if (user.role_type === "ADMIN") {
-          res.render("dashboard-admin");
+          res.redirect("/ip/admin");
           return;
         } else if (user.role_type === "PEMOHON") {
-          res.render("dashboard-instansi");
+          res.redirect("/ip/instansi");
           return;
         } else if (user.role_type === "OPERATOR") {
-          res.render("dashboard-operator");
+          res.redirect("/ip/operator");
           return;
         } else if (user.role_type === "KABID") {
-          res.render("dashboard-kabid");
+          res.redirect("/ip/kabid");
           return;
         } else {
           res.status(403).send("Forbidden: Anda tidak memiliki akses");
@@ -112,15 +112,14 @@ const createUser = async (req, res) => {
   });
 };
 
-
-const logout = async (req, res)=>{
+const logout = async (req, res) => {
   req.session.destroy((err) => {
     if (err) {
       return res.send("Gagal menghapus session");
     }
     res.clearCookie("connect.sid");
-    res.redirect("/login");
+    res.redirect("/ip/auth/login");
   });
-}
+};
 
 module.exports = { loginUser, createUser, logout };
