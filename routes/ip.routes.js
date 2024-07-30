@@ -1,5 +1,4 @@
 const express = require("express");
-const { authRouter } = require("./auth/auth.routes");
 const {
   sopCreateEmail,
   sopCreateEmailEGoverment,
@@ -9,12 +8,8 @@ const {
   sopCreateServer,
   sopMaintainanceInfrastructor,
 } = require("../utils/data");
-const { checkRole, isLoggedIn } = require("../utils/verify");
 
-const { instansiPageRouter } = require("./ip/instansi.routes");
-const { adminPageRouter } = require("./ip/admin.routes");
-const { kabidPageRouter } = require("./ip/kabid.routes");
-const { operatorPageRouter } = require("./ip/operator.routes");
+
 
 const ipRouter = express.Router();
 
@@ -22,17 +17,7 @@ ipRouter.get("/", (req, res) => {
   res.render("dashboard-umum");
 });
 
-ipRouter.use("/instansi", isLoggedIn, checkRole("PEMOHON"), instansiPageRouter);
-ipRouter.use("/admin", isLoggedIn, checkRole("ADMIN"), adminPageRouter);
-ipRouter.use("/kabid", isLoggedIn, checkRole("KABID"), kabidPageRouter);
-ipRouter.use(
-  "/operator",
-  isLoggedIn,
-  checkRole("OPERATOR"),
-  operatorPageRouter
-);
 
-ipRouter.use("/auth", authRouter);
 
 ipRouter.get("/sop/:slug", (req, res) => {
   const slug = req.params.slug;
@@ -63,7 +48,7 @@ ipRouter.get("/sop/:slug", (req, res) => {
       sop = sopCreateServer;
       break;
 
-    case "pengajuan-perawatan-infrastruktur":
+    case "pengajuan-pemasangan-infrastruktur":
       sop = sopMaintainanceInfrastructor;
       break;
 
@@ -76,8 +61,6 @@ ipRouter.get("/sop/:slug", (req, res) => {
   res.render("sop", { sop });
 });
 
-ipRouter.get("/instansi", (req, res) => {
-  res.render("dashboard-instansi");
-});
+
 
 module.exports = { ipRouter };
