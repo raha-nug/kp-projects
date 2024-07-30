@@ -6,7 +6,7 @@
   scroll-behavior: smooth;
 }
 
-a{
+a {
   text-decoration: none;
 }
 
@@ -29,12 +29,14 @@ header h1 {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   font-weight: 900;
-  font-size: 4rem;
+  font-size: clamp(2rem,10vw, 4rem); 
+  text-align: center;
 }
 
 header span {
   color: rgb(132, 178, 213);
-  font-size: 2rem;
+  text-align: center;
+  font-size: clamp(1rem,5vw, 2rem); 
 }
 
 header a {
@@ -91,14 +93,10 @@ main .card {
 }
 
 main .card:hover {
-    background: rgb(0, 10, 81);
-  background: linear-gradient(
-    0deg,
-    rgb(0, 13, 109) 0%,
-    rgba(3, 0, 54, 1) 100%
-  );
+  background: rgb(0, 10, 81);
+  background: linear-gradient(0deg, rgb(0, 13, 109) 0%, rgba(3, 0, 54, 1) 100%);
   scale: 1.01;
-  transition: all
+  transition: all;
 }
 
 main .card span {
@@ -107,10 +105,10 @@ main .card span {
   font-size: 2rem;
 }
 
-footer{
-    height: 8rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: .2rem;
+footer {
+  height: 8rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.2rem;
 }

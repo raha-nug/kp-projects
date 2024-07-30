@@ -1,5 +1,6 @@
 const express = require("express");
 const { ipRouter } = require("./routes/ip.routes");
+const { sekreRouter } = require("./routes/sekre.routes");
 const app = express();
 
 const port = 3000;
@@ -16,6 +17,7 @@ app.use(
   express.static(__dirname + "/node_modules/bootstrap-icons/font/")
 );
 app.use("/ip", ipRouter);
+app.use("/sekretariat", sekreRouter);
 
 app.get("/", (req, res) => {
   res.render("index");
