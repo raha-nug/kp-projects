@@ -2,7 +2,6 @@
 <html lang="en">
   <head>
     <%- include('components/headlink')%>
-    <link rel="stylesheet" href="/login.css" />
     <title>Portal Layanan Bidang Informatika Persandian</title>
   </head>
 
@@ -12,25 +11,80 @@
     <div class="carousel-inner">
       <div
         class="carousel-item active"
-        style="height: 75vh"
+        style="height: 85vh"
         data-bs-interval="10000">
         <img
           src="/bg-kominfo.jpg"
           class="d-block w-100"
           style="object-fit: cover"
           alt="..." />
-        <div class="carousel-caption d-none d-md-block">
-          <h1 class="text-header"><b>SELAMAT DATANG</b></h1>
-          <h2 class="text-header">Di Bidang IP DISHUBKOMINFO</h2>
+        <div
+          class="carousel-caption d-none d-md-block"
+          style="top: 35%; text-shadow: 0px 0px 50px rgba(0, 0, 0, 1)">
+          <h1><b>SELAMAT DATANG</b></h1>
+          <h2><b>DI BIDANG INFORMATIKA PERSANDIAN</b></h2>
         </div>
       </div>
     </div>
 
+<!-- informasi-->
+    <section
+      class="informasi"
+      id="tentang"
+      style="background-color: rgb(210, 218, 250)">
+      <div class="container-fluid p-5 pt-2">
+        <div class="row mt-5">
+          <div class="col-md-12">
+            <div
+              class="card shadow"
+              style="height: 20rem; border: none; height: max-content">
+              <div class="card-body">
+                <div class="row" style="text-align: justify">
+                  <div class="col-md-6">
+                    <button type="button" class="btn btn-success">
+                      Tentang Kami
+                    </button>
+                    <h2 class="mt-2">Bidang Informatika Persandian</h2>
+                    <p>
+                      Bidang Informatika Persandian adalah area yang bertanggung
+                      jawab untuk mengelola, melindungi, dan mengamankan
+                      informasi serta komunikasi pemerintah. Selain itu, bidang
+                      informatika persandian bagian integral dari infrastruktur
+                      teknologi informasi pemerintah yang berfungsi untuk
+                      menjaga kerahasiaan, integritas, dan ketersediaan data
+                      serta komunikasi antar lembaga pemerintah.
+                    </p>
+                    <p>
+                      Bidang informatika persandian menyediakan berbagai layanan
+                      penting seperti server, hosting, domain yang dilengkapi
+                      dengan fitur keamanan tingkat tinggi.
+                    </p>
+                  </div>
+                  <div class="col-md-6">
+                    <div>
+                      <img
+                        src="/tentang.svg"
+                        alt=""
+                        style="object-fit: cover; width: 100%; height: 20rem" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- informasi end -->
+
+    <!-- Layanan -->
     <div class="container-fluid">
       <div class="row mt-5">
         <div class="col-md-12 mt-3 p-5 pt-2">
-          <h3>Layanan Bidang IP</h3>
-          <hr class="bg-secondary" />
+          <h4 class="text-center" style="color: rgb(28, 28, 231)">Layanan</h4>
+          <h2 class="text-center">Bidang Informatika Persandian</h2>
+
+          <!-- old -->
           <div
             class="d-flex justify-content-center gap-4 flex-wrap text-center">
             <div class="card col-md-3" style="width: 18rem">
@@ -53,18 +107,7 @@
 
             <div class="card card col-md-3" style="width: 18rem">
               <div class="card-body">
-                <h5 class="card-title">Pengajuan Pemasangan Ifrastruktur</h5>
-                <a
-                  href="/ip/sop/pengajuan-pemasangan-infrastruktur"
-                  class="btn btn-primary">
-                  Lihat Detail
-                </a>
-              </div>
-            </div>
-
-            <div class="card card col-md-3" style="width: 18rem">
-              <div class="card-body">
-                <h5 class="card-title">Pembuatan Email E-Goverment</h5>
+                <h5 class="card-title">Pembuatan Drive E-Goverment</h5>
                 <a
                   href="/ip/sop/pembuatan-email-e-goverment"
                   class="btn btn-primary">
@@ -103,11 +146,212 @@
                 </a>
               </div>
             </div>
+            <div class="card col-md-3 hover" style="width: 18rem">
+              <div class="card-body">
+                <h5 class="card-title">Penyimpanan Server</h5>
+                <a href="/ip/sop/penyimpanan-server" class="btn btn-primary">
+                  Lihat Detail
+                </a>
+              </div>
+            </div>
+
+            <div class="card col-md-3 hover" style="width: 18rem">
+              <div class="card-body">
+                <h5 class="card-title">Fasilitas Alat - Alat Zoom</h5>
+                <a href="/ip/sop/penyimpanan-server" class="btn btn-primary">
+                  Lihat Detail
+                </a>
+              </div>
+            </div>
+
+            <div class="card col-md-3 hover" style="width: 18rem">
+              <div class="card-body">
+                <h5 class="card-title">Jumlah Aplikasi Desa</h5>
+                <a href="/ip/sop/penyimpanan-server" class="btn btn-primary">
+                  Lihat Detail
+                </a>
+              </div>
+            </div>
+
+            <div class="card col-md-3 hover" style="width: 18rem">
+              <div class="card-body">
+                <h5 class="card-title">Jumlah Desa Blank Spot</h5>
+                <a href="/ip/sop/penyimpanan-server" class="btn btn-primary">
+                  Lihat Detail
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
+      <!-- end layanan -->
+
+      <!-- kerjasama -->
+      <div class="container-fluid">
+        <div class="row mt-5">
+          <h4 class="text-center" style="color: rgb(28, 28, 231)">Kerjasama</h4>
+          <h2 class="text-center">Bidang Informatika Persandian</h2>
+          <div class="d-flex justify-content-center gap-4 pt-3">
+            <div class="card card col-md-3">
+              <img
+                src="https://asani.co.id/wp-content/uploads/2023/09/server-adalah.webp"
+                class="card-img-top"
+                alt="..." />
+              <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">
+                  This is a longer card with supporting text below as a natural
+                  lead-in to additional content. This content is a little bit
+                  longer.
+                </p>
+              </div>
+            </div>
+
+            <div class="card card col-md-3">
+              <img
+                src="https://asani.co.id/wp-content/uploads/2023/09/server-adalah.webp"
+                class="card-img-top"
+                alt="..." />
+              <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">
+                  This is a longer card with supporting text below as a natural
+                  lead-in to additional content. This content is a little bit
+                  longer.
+                </p>
+              </div>
+            </div>
+
+            <div class="card card col-md-3">
+              <img
+                src="https://asani.co.id/wp-content/uploads/2023/09/server-adalah.webp"
+                class="card-img-top"
+                alt="..." />
+              <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">
+                  This is a longer card with supporting text below as a natural
+                  lead-in to additional content. This content is a little bit
+                  longer.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- end kerjasama -->
+
+      <!-- Faq -->
+      <section>
+        <div class="container" id="faq">
+          <div class="mt-5 p-1">
+            <h4 class="text-center mt-5 pt-4" style="color: rgb(28, 28, 231)">
+              FAQ
+            </h4>
+            <p class="text-center">Apa saja pertanyaanmu?</p>
+            <div class="accordion" id="accordionPanelsStayOpenExample">
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button
+                    class="accordion-button"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#panelsStayOpen-collapseOne"
+                    aria-expanded="true"
+                    aria-controls="panelsStayOpen-collapseOne">
+                    Apa itu bidang informatika persandian?
+                  </button>
+                </h2>
+                <div
+                  id="panelsStayOpen-collapseOne"
+                  class="accordion-collapse collapse show">
+                  <div class="accordion-body">
+                    <p>
+                      Bidang Informatika Persandian adalah area yang bertanggung
+                      jawab untuk mengelola, melindungi, dan mengamankan
+                      informasi serta komunikasi pemerintah. Selain itu, bidang
+                      informatika persandian bagian integral dari infrastruktur
+                      teknologi informasi pemerintah yang berfungsi untuk
+                      menjaga kerahasiaan, integritas, dan ketersediaan data
+                      serta komunikasi antar lembaga pemerintah.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button
+                    class="accordion-button collapsed"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#panelsStayOpen-collapseTwo"
+                    aria-expanded="false"
+                    aria-controls="panelsStayOpen-collapseTwo">
+                    Bagaimana cara mengajukan pengajuan layanan ke Bidang
+                    Informatika Persandian ?
+                  </button>
+                </h2>
+                <div
+                  id="panelsStayOpen-collapseTwo"
+                  class="accordion-collapse collapse">
+                  <div class="accordion-body">
+                    <p>
+                      Anda dapat mengajukan permohonan layanan melalui portal
+                      resmi kami dengan masuk menggunakan akun instansi anda,
+                      jika belum memiliki akun anda bisa mengajukan ke pihak
+                      bidang informatika persandian untuk memiliki akun instansi
+                      dengan klik
+                      <code>pengajuan akun</code>
+                      . Setelah pengajuan diterima, kami akan memproses dan
+                      mengamankan domain Anda sesuai dengan standar keamanan
+                      yang berlaku.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- end FAq -->
     </div>
+
+    <!-- Footer -->
+    <section
+      class="container-fluid mt-5 pt-5 text-white"
+      style="background-color: rgb(15, 3, 49)">
+      <div class="row gap-4">
+        <div class="col-lg-5 d-block" style="height: 16rem">
+          <div class="d-flex gap-4 align-items-center">
+            <img src="/dishub.png" alt="" style="height: 5rem" />
+            <h5 class="fw-bold">DISHUBKOMINFO KAB TASIKMALAYA</h5>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <h5>Kontak</h5>
+          <ul class="p-1" style="list-style: none">
+            <li>+625678908765</li>
+            <li>dishubkominfo@tasikmalayakab.go.id</li>
+            <li>
+              J4QT+MHC, Sukaasih, Kec.Singaparna, Kab.Tasikmalaya, Jawa barat
+              46415
+            </li>
+          </ul>
+        </div>
+        <div class="col-lg-2">
+          <h5>Navigasi</h5>
+          <ul class="p-1" style="list-style: none">
+            <li>Tentang</li>
+            <li>Layanan</li>
+            <li>Kerjasama</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    <!-- end Footer-->
 
     <script src="/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>
+
+

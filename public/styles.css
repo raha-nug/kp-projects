@@ -70,14 +70,14 @@ main h2 {
   color: rgb(9, 3, 19);
 }
 
-main .container {
+main .container-flex {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
   gap: 3rem;
 }
 
-main .card {
+main .cards {
   cursor: pointer;
   height: 15rem;
   width: 20rem;
@@ -92,14 +92,14 @@ main .card {
   padding: 2rem;
 }
 
-main .card:hover {
+main .cards:hover {
   background: rgb(0, 10, 81);
   background: linear-gradient(0deg, rgb(0, 13, 109) 0%, rgba(3, 0, 54, 1) 100%);
   scale: 1.01;
   transition: all;
 }
 
-main .card span {
+main .cards span {
   color: aliceblue;
   font-weight: 900;
   font-size: 2rem;

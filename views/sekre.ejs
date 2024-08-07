@@ -1,14 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap"
-      rel="stylesheet" />
-    <link rel="stylesheet" href="styles.css" />
+    <%- include('components/headlink')%>
     <title>Sekretariat - Dishubkominfo</title>
   </head>
   <body>
@@ -18,14 +11,110 @@
       <a href="">Explore</a>
     </header>
 
-    <main>
-      <h2 id="bidang">About Us</h2>
-      <div class="card">
-          <span>Halo</span>
-      </div>
-      <div class="container">
-      </div>
+    <main style="background-color: #f3f0fd">
+      <section>
+        <div class="container">
+          <h2 id="bidang">Tentang Kita</h2>
+          <div class="card shadow-sm" style="border: none; max-height: 26rem">
+            <div class="card-body px-5">
+              <div class="row">
+                <div class="col-lg-7">
+                  <h4 class="fw-bold mt-5 mb-3">
+                    Apa yang dimaksud bidang kesekretariatan?
+                  </h4>
+                  <p>
+                    Bidang kesekretariatan di suatu badan negara memainkan peran
+                    penting dalam mendukung kelancaran operasional dan
+                    administrasi organisasi tersebut. Tugas utama dari
+                    kesekretariatan adalah mengelola tugas-tugas administratif,
+                    memberikan dukungan manajerial, serta memastikan komunikasi
+                    yang efektif antara berbagai departemen dan pihak eksternal
+                  </p>
+                </div>
+                <div class="col-lg-5">
+                  <div
+                    style="height: 20rem"
+                    class="d-flex justify-content-center">
+                    <img
+                      src="/secre-ilustration.png"
+                      alt=""
+                      height="100%"
+                      style="object-fit: cover" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="mt-5 pt-5">
+        <h2>Peran dan Fungsi</h2>
+
+        <div class="container-flex">
+          <div class="cards">
+            <div class="card-body">
+              <span>Administrasi dan Dokumentasi</span>
+            </div>
+          </div>
+          <div class="cards">
+            <div class="card-body">
+              <span>Pengarsipan</span>
+            </div>
+          </div>
+          <div class="cards">
+            <div class="card-body">
+              <span>Implementasi Kebijakan</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="mt-5 pt-5">
+        <div class="container">
+          <h2 style="text-align: left">Anggota bidang</h2>
+          <div class="container-flex">
+            <div class="col-md-3">
+              <div
+                class="card shadow-sm"
+                style="height: 16rem; border: none; position: relative">
+                <div
+                  style="
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    height: 16rem;
+                    width: 1rem;
+                    background-color: rgb(0, 10, 81);
+                    border-top-left-radius: 5px;
+                    border-bottom-left-radius: 5px;
+                  "></div>
+                <div
+                  class="card-header ms-3"
+                  style="border: none; background-color: inherit">
+                  <h5 class="fw-bold">Kasubag Umpeg</h5>
+                </div>
+                <div class="card-body ms-3">
+                  <span>Pak Nurul ...</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-3">
+              <div class="card">
+                <div class="card-header">
+                  <h5 class="fw-bold">Jumlah Anggota</h5>
+                </div>
+                <div class="card-body">
+                  <span style="font-weight: bold; font-size: 3rem">27</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
-    <footer></footer>
+
+    <%- include('components/footer')%>
   </body>
 </html>
