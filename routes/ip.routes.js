@@ -6,61 +6,36 @@ const {
   sopCreateHosting,
   sopMigrateToSidekaNG,
   sopCreateServer,
-  sopMaintainanceInfrastructor,
+
+  layananIP,
 } = require("../utils/data");
-
-
 
 const ipRouter = express.Router();
 
 ipRouter.get("/", (req, res) => {
-  res.render("dashboard-umum");
+  res.render("dashboard-umum", { layananIp: layananIP });
 });
 
-
-
-ipRouter.get("/sop/:slug", (req, res) => {
-  const slug = req.params.slug;
+ipRouter.get("/:slug", (req, res) => {
+  const slug = `/ip/${req.params.slug}`;
   let sop = [];
 
-  switch (slug) {
-    case "pembuatan-email-tasikmalayakab":
-      sop = sopCreateEmail;
-      break;
+  const sopMapping = {
+    "/ip/pengajuan-server": sopCreateServer,
+    "/ip/pengajuan-sideka": sopMigrateToSidekaNG,
+    "/ip/pengajuan-hosting": sopCreateHosting,
+    "/ip/drive-e-goverment": sopCreateEmailEGoverment,
+    "/ip/email-tasikmalayakab": sopCreateEmail,
+    "/ip/pengajuan-domain": sopCreateDomain,
+    "/ip/pengajuan-domain": sopCreateDomain,
+    // tambah 3 data
+  };
 
-    case "pengajuan-domain":
-      sop = sopCreateDomain;
-      break;
-
-    case "pembuatan-email-e-goverment":
-      sop = sopCreateEmailEGoverment;
-      break;
-
-    case "pengajuan-hosting":
-      sop = sopCreateHosting;
-      break;
-
-    case "migrasi-sidekang":
-      sop = sopMigrateToSidekaNG;
-      break;
-
-    case "pengajuan-server":
-      sop = sopCreateServer;
-      break;
-
-    case "pengajuan-pemasangan-infrastruktur":
-      sop = sopMaintainanceInfrastructor;
-      break;
-
-    default:
-      res.send("Halaman tidak tersedia");
-      return;
-      break;
+  if (sopMapping[slug]) {
+    sop = sopMapping[slug];
   }
 
   res.render("sop", { sop });
 });
-
-
 
 module.exports = { ipRouter };

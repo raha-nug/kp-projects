@@ -1,3 +1,42 @@
+const layananIP = [
+  {
+    name: "Pengajuan Server",
+    link: "/ip/pengajuan-server",
+  },
+  {
+    name: "Pengajuan sideka",
+    link: "/ip/pengajuan-sideka",
+  },
+  {
+    name: "Pengajuan Dosting",
+    link: "/ip/pengajuan-hosting",
+  },
+  {
+    name: "Pembuatan Akun Drive E-Goverment",
+    link: "/ip/drive-e-goverment",
+  },
+  {
+    name: "Pembuatan Akun Email @tasikmalayakab.go.id",
+    link: "/ip/email-tasikmalayakab",
+  },
+  {
+    name: "Pengajuan Domain",
+    link: "/ip/pengajuan-domain",
+  },
+  {
+    name: "Pengajuan Fasilitas Alat Alat Zoom",
+    link: "/ip/pengajuan-alat-zoom",
+  },
+  {
+    name: "Jumlah Aplikasi Desa",
+    link: "/ip/jumlah-app-desa",
+  },
+  {
+    name: "Jumlah Desa Blank Spot",
+    link: "/ip/jumlah-desa-blankspot",
+  },
+];
+
 const sopCreateEmail = [
   {
     title: "Pembuatan Akun Email @tasikmalayakab.go.id",
@@ -90,18 +129,41 @@ const sopCreateServer = [
   },
 ];
 
-const sopMaintainanceInfrastructor = [
+const bidang = [
   {
-    title: "Standar operasional pelayanan pengajuan pemasangan infrastuktur",
-    data: [
-      "Membuat surat permohonan, disposisi Bupati/Sekda dan data inventaris computer dan jaringan.",
-      "Menerima surat permohonan Pemeliharaan infrastruktur Telematika dari OPD.",
-      "Memeriksa/meneliti surat permohonan beserta lampiran (data inventaris) dan membuat konsep surat persetujuan permohonan.",
-      " Memeriksa/meneliti/menyetujui surat permohonan beserta lampiran (data inventaris) dan konsep persetujuan permohonan.",
-      " Selanjutnya, memeriksa/meneliti/menyetujui surat permohonan beserta lampiran (data inventaris) dan mendandatangani surat permohonan.",
-      "Pemeliharaan infrastruktur.",
-      "Kemudian pengarsipan.",
-    ],
+    nama: "Sekretariat",
+    icon: "bi bi-file-person-fill",
+    link: "/sekretariat",
+  },
+  {
+    nama: "Bidang Lalu Lintas",
+    icon: "bi bi-stoplights",
+    link: "/lalulintas",
+  },
+  {
+    nama: "Bidang Angkutan",
+    icon: "bi bi-bus-front",
+    link: "/angkutan",
+  },
+  {
+    nama: "Bidang Sarana dan Prasarana",
+    icon: "bi bi-tools",
+    link: "/sapras",
+  },
+  {
+    nama: "Bidang Informasi dan Komunikasi Publik",
+    icon: "bi bi-camera-reels",
+    link: "/ikp",
+  },
+  {
+    nama: "Bidang Informatika dan Persandian",
+    icon: "bi bi-database-lock",
+    link: "/ip",
+  },
+  {
+    nama: "Unit Pelaksana Teknis Daerah",
+    icon: "bi bi-buildings",
+    link: "/uptd",
   },
 ];
 
@@ -112,5 +174,6 @@ module.exports = {
   sopCreateHosting,
   sopMigrateToSidekaNG,
   sopCreateServer,
-  sopMaintainanceInfrastructor,
+  bidang,
+  layananIP,
 };
