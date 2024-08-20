@@ -1,0 +1,61 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+
+model DesaBlankspot{
+  id Int @default(autoincrement()) @id
+  name String
+  email String
+  phone_number String
+  kecamatan String
+  kelurahan String
+  location_name String
+  location_address String
+  latitude String
+  longitude String
+  location_code String
+  operational String
+  electric_resources String
+  electric_capacity String
+  id_pelanggan String
+  signal_available String
+  operator String
+  signal_power String
+  signal_needed String
+  sector_category String
+  priority String
+  location_image String
+}
+
+
+model DesaApp{
+  id Int @default(autoincrement()) @id
+  desa String
+  kecamatan String
+  apps UsedApps[]
+  admin_name String
+  admin_phone_number String
+}
+
+model UsedApps{
+  id Int @default(autoincrement()) @id
+  app_name String
+  status String
+  used_since DateTime
+  app_dev String
+  app_url String
+  desa DesaApp @relation(fields: [desa_id], references: [id])
+  desa_id Int
+}

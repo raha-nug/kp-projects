@@ -9,12 +9,15 @@ const {
 
   layananIP,
 } = require("../utils/data");
+const desaBlankspotRouter = require("./act-route/desa-blankspot.routes");
 
 const ipRouter = express.Router();
 
 ipRouter.get("/", (req, res) => {
   res.render("dashboard-umum", { layananIp: layananIP });
 });
+
+ipRouter.use("/", desaBlankspotRouter);
 
 ipRouter.get("/:slug", (req, res) => {
   const slug = `/ip/${req.params.slug}`;
@@ -33,6 +36,12 @@ ipRouter.get("/:slug", (req, res) => {
 
   if (sopMapping[slug]) {
     sop = sopMapping[slug];
+  } else if (slug === "/ip/jumlah-app-desa") {
+    res.render("app-desa");
+    return;
+  } else if (slug === "/ip/jumlah-desa-blankspot") {
+    res.render("desa-blankspot");
+    return;
   }
 
   res.render("sop", { sop });
