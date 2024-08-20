@@ -9,6 +9,8 @@ const {
 const {
   getDesaBlankspot,
   createDesaBlankspot,
+  updateDesaBlankspot,
+  deleteDesaBlankspot,
 } = require("../../controllers/desa-blankspot.controller");
 
 const storage = multer.diskStorage({
@@ -35,8 +37,13 @@ desaBlankspotRouter.post(
   createDesaBlankspot
 );
 
-desaBlankspotRouter.put("/blankspot", (req, res) => {});
+desaBlankspotRouter.post(
+  "/blankspot/:id/edit",
+  upload.single("location_image"),
+  validateDesaBlankspot,
+  updateDesaBlankspot
+);
 
-desaBlankspotRouter.delete("/blankspot", (req, res) => {});
+desaBlankspotRouter.delete("/blankspot/:id/delete", deleteDesaBlankspot);
 
 module.exports = desaBlankspotRouter;

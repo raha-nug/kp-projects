@@ -1,13 +1,15 @@
 const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
+const path = require("path");
+const fs = require("fs");
 
 const getDesaBlankspot = async (req, res) => {
   try {
     const allDesa = await prisma.desaBlankspot.findMany();
     res.status(200).send({
       status: "success",
-      data: allDesa,
       total_data: allDesa.length,
+      data: allDesa,
     });
   } catch (error) {
     res.status(500).send({
@@ -41,4 +43,105 @@ const createDesaBlankspot = async (req, res) => {
   }
 };
 
-module.exports = { getDesaBlankspot, createDesaBlankspot };
+const updateDesaBlankspot = async (req, res) => {
+  try {
+    const desa = await prisma.desaBlankspot.findUnique({
+      where: {
+        id: Number(req.params.id),
+      },
+    });
+
+    if (!desa) {
+      return res.status(404).send({
+        status: "error",
+        message: "Data tidak ditemukan",
+      });
+    }
+
+    const imageName = path.basename(desa.location_image);
+    if (req.file) {
+      if (desa.location_image) {
+        const rootDir = path.join(__dirname, ".."); // Kembali satu level ke root proyek
+        const oldFilePath = path.join(rootDir, "uploads", imageName);
+
+        if (fs.existsSync(oldFilePath)) {
+          fs.unlinkSync(oldFilePath);
+        }
+      }
+
+      desa.location_image = req.file.filename;
+    }
+
+    const updatedDesa = await prisma.desaBlankspot.update({
+      where: {
+        id: Number(req.params.id),
+      },
+      data: {
+        ...req.body,
+        location_image: `/uploads/${req.file ? req.file.filename : imageName}`,
+      },
+    });
+
+    res.status(201).send({
+      status: "success",
+      message: "Data berhasil diubah",
+      data: updatedDesa,
+    });
+  } catch (error) {
+    res.status(500).send({
+      status: "error",
+      message: error.message || "Terjadi kesalahan saat menyimpan data",
+    });
+  }
+};
+
+const deleteDesaBlankspot = async (req, res) => {
+  try {
+    const desa = await prisma.desaBlankspot.findUnique({
+      where: {
+        id: Number(req.params.id),
+      },
+    });
+
+    if (!desa) {
+      return res.status(404).send({
+        status: "error",
+        message: "Data tidak ditemukan",
+      });
+    }
+
+    const rootDir = path.join(__dirname, ".."); // Kembali satu level ke root proyek
+    const imageName = path.basename(desa.location_image);
+    const oldFilePath = path.join(rootDir, "uploads", imageName);
+
+    console.log(imageName);
+    console.log(oldFilePath);
+
+    if (fs.existsSync(oldFilePath)) {
+      fs.unlinkSync(oldFilePath);
+    }
+
+    await prisma.desaBlankspot.delete({
+      where: {
+        id: Number(req.params.id),
+      },
+    });
+
+    res.status(201).send({
+      status: "success",
+      message: "Data berhasil dihapus",
+    });
+  } catch (error) {
+    res.status(500).send({
+      status: "error",
+      message: error.message || "Terjadi kesalahan saat menyimpan data",
+    });
+  }
+};
+
+module.exports = {
+  getDesaBlankspot,
+  createDesaBlankspot,
+  updateDesaBlankspot,
+  deleteDesaBlankspot,
+};
