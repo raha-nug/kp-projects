@@ -5,7 +5,7 @@ const path = require("path");
 const {
   validateDesaBlankspot,
   checkFilePresence,
-} = require("../../middleware/validate-desa");
+} = require("../../middleware/validate-input");
 const {
   getDesaBlankspot,
   createDesaBlankspot,

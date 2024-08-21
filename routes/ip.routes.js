@@ -11,6 +11,7 @@ const {
 } = require("../utils/data");
 const desaBlankspotRouter = require("./act-route/desa-blankspot.routes");
 const instansiAppRouter = require("./act-route/instansi-app.routes");
+const appsRouter = require("./act-route/apps.routes");
 
 const ipRouter = express.Router();
 
@@ -20,6 +21,7 @@ ipRouter.get("/", (req, res) => {
 
 ipRouter.use("/", desaBlankspotRouter);
 ipRouter.use("/", instansiAppRouter);
+ipRouter.use("/", appsRouter);
 
 ipRouter.get("/:slug", (req, res) => {
   const slug = `/ip/${req.params.slug}`;
