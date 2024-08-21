@@ -27,24 +27,40 @@ const desaBlankspotSchema = z.object({
 const usedAppsSchema = z.object({
   app_name: z.string().min(1, "Nama aplikasi harus diisi"),
   status: z.string().min(1, "Status harus diisi"),
-  used_since: z.date().optional(), // Tanggal opsional jika ingin diisi secara manual
+  used_since: z.string().date({ required_error: "Tanggal harus diisi" }),
   app_dev: z.string().min(1, "Pengembang harus diisi"),
   app_url: z.string().url("Format URL tidak valid"),
-  desa_id: z.number().int(), // ID desa harus ada
 });
 
-const desaAppSchema = z.object({
-  desa: z.string().min(1, "Nama desa harus diisi"),
-  kecamatan: z.string().min(1, "Kecamatan harus diisi"),
-  apps: z.array(usedAppsSchema).optional(), // apps bisa berupa array dari `UsedApps` atau kosong
+const instansiAppSchema = z.object({
+  name: z.string().min(1, "Nama desa harus diisi"),
+  kecamatan: z.string().optional(),
+  type: z.string().min(1, "Type harus diisi"),
+  apps: z.array(usedAppsSchema).optional(), //array dari `UsedApps` atau kosong
   admin_name: z.string().min(1, "Nama admin harus diisi"),
-  admin_phone_number: z.string().min(1, "Nomor hp admin harus diisi"),
+  admin_phone_number: z
+    .string()
+    .min(10, "Nomor HP admin harus minimal 10 karakter")
+    .regex(/^\d+$/, "Nomor HP admin harus berupa angka"),
 });
 
 //validate desa app
-const valiadateDesaApp = (req, res, next) => {
+const valiadateInstansiApp = (req, res, next) => {
   try {
-    desaAppSchema.parse(req.body);
+    instansiAppSchema.parse(req.body);
+    next(); // Lanjutkan jika validasi berhasil
+  } catch (e) {
+    return res.status(400).send({
+      status: "error",
+      message: e.errors.map((err) => err.message),
+    });
+  }
+};
+
+//validate apps
+const validateUsedApps = (req, res, next) => {
+  try {
+    usedAppsSchema.parse(req.body);
     next(); // Lanjutkan jika validasi berhasil
   } catch (e) {
     return res.status(400).send({
@@ -59,7 +75,7 @@ const checkFilePresence = (req, res, next) => {
   if (!req.file) {
     return res.status(400).send({
       status: "error",
-      message: "File is required",
+      message: "File wajib diisi",
     });
   }
   next();
@@ -82,4 +98,10 @@ const validateDesaBlankspot = (req, res, next) => {
   }
 };
 
-module.exports = { checkFilePresence, valiadateDesaApp, validateDesaBlankspot };
+module.exports = {
+  checkFilePresence,
+  valiadateInstansiApp,
+  validateDesaBlankspot,
+  validateUsedApps
+
+};

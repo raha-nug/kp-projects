@@ -40,10 +40,11 @@ model DesaBlankspot{
 }
 
 
-model DesaApp{
+model Instansi{
   id Int @default(autoincrement()) @id
-  desa String
-  kecamatan String
+  name String
+  kecamatan String?
+  type String
   apps UsedApps[]
   admin_name String
   admin_phone_number String
@@ -56,6 +57,6 @@ model UsedApps{
   used_since DateTime
   app_dev String
   app_url String
-  desa DesaApp @relation(fields: [desa_id], references: [id])
-  desa_id Int
+  instansi Instansi @relation(fields: [instansi_id], references: [id])
+  instansi_id Int
 }

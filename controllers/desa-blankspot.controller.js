@@ -82,7 +82,7 @@ const updateDesaBlankspot = async (req, res) => {
       },
     });
 
-    res.status(201).send({
+    res.status(200).send({
       status: "success",
       message: "Data berhasil diubah",
       data: updatedDesa,
@@ -127,7 +127,7 @@ const deleteDesaBlankspot = async (req, res) => {
       },
     });
 
-    res.status(201).send({
+    res.status(200).send({
       status: "success",
       message: "Data berhasil dihapus",
     });
