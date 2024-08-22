@@ -4,13 +4,13 @@ const {
   createIntansi,
   updateInstansiApp,
   deleteInstansi,
+  getInstansiByParams,
 } = require("../../controllers/instansi-app.controller");
-const {
-  valiadateInstansiApp,
-} = require("../../middleware/validate-input");
+const { valiadateInstansiApp } = require("../../middleware/validate-input");
 const instansiAppRouter = express.Router();
 
 instansiAppRouter.get("/instansi-app", getInstansi);
+instansiAppRouter.get("/instansi-app/:slug", getInstansiByParams);
 
 instansiAppRouter.post("/instansi-app", valiadateInstansiApp, createIntansi);
 

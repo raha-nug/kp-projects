@@ -1,0 +1,149 @@
+<h3 class="mt-5 mb-3">
+  <b>Data Aplikasi yang digunakan oleh desa</b>
+</h3>
+<div class="card">
+  <div class="card-header">
+    <a href="/ip/apps/form/desa" class="btn btn-success">
+      <i class="bi bi-plus"></i>
+      Tambah Data
+    </a>
+  </div>
+  <div class="card-body">
+    <div class="table-responsive">
+      <table
+        class="table table-hover table-borderless pt-4 p-1 datatable"
+        id="jumlah_desa">
+        <thead class="table-primary">
+          <tr>
+            <th>No</th>
+            <th>Desa</th>
+            <th>Kecamatan</th>
+            <th>Jumlah Aplikasi</th>
+            <th>Aplikasi</th>
+            <th>Nama admin</th>
+            <th>No. Hp</th>
+            <th>Aksi</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% data.forEach((desa, index)=>{ %>
+          <tr>
+            <td><%=index + 1 %></td>
+            <td><%=desa.instansi_name %></td>
+            <td><%=desa.kecamatan %></td>
+            <td><%=desa.total_apps %></td>
+            <td>
+              <button
+                type="button"
+                class="btn btn-success"
+                data-bs-toggle="modal"
+                data-bs-target="#exampleModal"
+                data-apps="<%= JSON.stringify(desa.apps) %>">
+                Detail
+              </button>
+            </td>
+            <td><%=desa.admin_name%></td>
+            <td><%=desa.admin_phone_number%></td>
+            <td>
+              <!-- button -->
+              <div class="d-flex gap-1">
+                <a class="btn btn-warning" href="/form-aplikasi">
+                  <i class="bi bi-pencil-square"></i>
+                </a>
+                <button class="btn btn-danger">
+                  <i class="bi bi-trash"></i>
+                </button>
+              </div>
+            </td>
+          </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- modal -->
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div
+    class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">
+          <b>Aplikasi</b>
+        </h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"></button>
+      </div>
+      <div class="modal-body py-5"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Mendapatkan referensi modal
+  const exampleModal = document.getElementById("exampleModal");
+
+  // Event listener ketika modal akan dibuka
+  exampleModal.addEventListener("show.bs.modal", function (event) {
+    // Tombol yang diklik
+    const button = event.relatedTarget;
+
+    // Mengambil data-apps dari tombol yang diklik
+    const appsData = JSON.parse(button.getAttribute("data-apps"));
+
+    // Mendapatkan elemen di dalam modal yang akan diisi
+    const modalBody = exampleModal.querySelector(".modal-body");
+
+    // Mengosongkan modalBody sebelum mengisinya
+    modalBody.innerHTML = "";
+
+    // Memasukkan data apps ke dalam modal
+    if (appsData.length > 0) {
+      modalBody.innerHTML = `
+    <div class="table-responsive">
+      <table class="table datatable">
+        <thead>
+          <tr>
+            <th>No</th>
+            <th>Nama Aplikasi</th>
+            <th>Status Aplikasi</th>
+            <th>Digunakan Sejak</th>
+            <th>Pengembang</th>
+            <th>URL Aplikasi</th>
+          </tr>
+        </thead>
+        <tbody class="table-striped">
+          ${appsData
+            .map(
+              (app, index) => `
+            <tr>
+              <td>${index + 1}</td>
+              <td>${app.app_name}</td>
+              <td>${app.status}</td>
+              <td>${new Date(app.used_since).toLocaleDateString()}</td>
+              <td>${app.app_dev}</td>
+              <td><a href="${app.app_url}" target="_blank">${
+                app.app_url
+              }</a></td>
+            </tr>
+          `
+            )
+            .join("")}
+        </tbody>
+      </table>
+    </div>
+  `;
+    } else {
+      modalBody.innerHTML = "<p>Tidak ada aplikasi yang terkait.</p>";
+    }
+  });
+</script>

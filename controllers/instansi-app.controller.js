@@ -1,6 +1,67 @@
 const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 
+const getInstansiByParams = async (req, res) => {
+  const { slug } = req.params;
+  try {
+    const instansi = await prisma.instansi.findMany({
+      where: {
+        type: slug,
+      },
+      include: {
+        _count: {
+          select: {
+            apps: true,
+          },
+        },
+        apps: true,
+      },
+    });
+
+    if (instansi.length === 0) {
+      return res.status(404).send({
+        status: "error",
+        message: "Data tidak diemukan",
+      });
+    }
+
+    const totalInstansi = await prisma.instansi.count({
+      where: {
+        type: slug,
+      },
+    });
+
+    const mappedInstansi = instansi.map((instansi) => ({
+      instansi_id: instansi.id,
+      type: instansi.type,
+      instansi_name: instansi.name,
+      kecamatan: instansi.kecamatan,
+      admin_name: instansi.admin_name,
+      admin_phone_number: instansi.admin_phone_number,
+      total_apps: instansi._count.apps,
+      apps: instansi.apps,
+    }));
+
+    // res.status(200).send({
+    //   status: "success",
+    //   total_instansi: totalInstansi,
+    //   data: mappedInstansi,
+    // });
+
+    res.render("dashboard", {
+      status: "success",
+      type: slug,
+      total_instansi: totalInstansi,
+      data: mappedInstansi,
+    });
+  } catch (error) {
+    res.status(500).send({
+      status: "error",
+      message: error.message || "Terjadi kesalahan ketika mengambil data",
+    });
+  }
+};
+
 const getInstansi = async (req, res) => {
   try {
     const instansi = await prisma.instansi.findMany({
@@ -152,6 +213,7 @@ const deleteInstansi = async (req, res) => {
 };
 
 module.exports = {
+  getInstansiByParams,
   getInstansi,
   createIntansi,
   updateInstansiApp,
