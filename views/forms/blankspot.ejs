@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('../components/headlink')%>
+    <title>Pendataan Desa Blankspot</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-primary fixed-top">
+      <div class="container-fluid">
+        <a class="navbar-brand text-white" href="/ip">
+          <img src="/dishub.png" height="50" class="ms-5" />
+        </a>
+      </div>
+    </nav>
+
+    <div class="container-fluid mt-5 pt-5 d-flex justify-content-center">
+      <div class="card" style="width: 45rem">
+        <h5 class="card-header my-3 text-center bg-transparent">
+          <b>Pendataan Desa Blankspot</b>
+        </h5>
+        <form action="/ip/blankspot" method="post" id="blankspot">
+          <div class="card-body">
+            <div class="mb-3">
+              <label for="name" class="form-label">Nama Lengkap</label>
+              <input
+                type="text"
+                class="form-control"
+                id="name"
+                name="name"
+                required />
+            </div>
+
+            <div class="mb-3">
+              <label for="email" class="form-label">Email</label>
+              <input
+                type="email"
+                class="form-control"
+                id="email"
+                name="email"
+                required />
+            </div>
+
+            <div class="mb-3">
+              <label for="phone_number" class="form-label">No. Hp</label>
+              <input
+                type="text"
+                class="form-control"
+                id="phone_number"
+                name="phone_number"
+                required />
+            </div>
+
+            <div class="mb-3">
+              <label for="kecamatan" class="form-label">Kecamatan</label>
+              <input
+                type="text"
+                class="form-control"
+                name="kecamatan"
+                id="kecamatan"
+                required />
+            </div>
+
+            <div class="mb-3">
+              <label for="kelurahan" class="form-label">Kelurahan/Desa</label>
+              <input
+                type="text"
+                class="form-control"
+                name="kelurahan"
+                id="kelurahan"
+                required />
+            </div>
+
+            <div class="mb-3">
+              <label for="location_name" class="form-label">Nama Lokasi</label>
+              <p style="font-size: 0.8rem">
+                <i>*contoh : Kantor Kepala Desa Wakap, Bantarkalong</i>
+              </p>
+
+              <input
+                type="text"
+                class="form-control"
+                name="location_name"
+                id="location_name"
+                required />
+            </div>
+
+            <div class="mb-3">
+              <label for="location_address" class="form-label">
+                Alamat Lengkap
+              </label>
+              <p style="font-size: 0.8rem">
+                <i>
+                  *contoh : Kampung Biru RT 13 RW 06, Desa Wakap, Kecamatan
+                  Bantarkalong
+                </i>
+              </p>
+              <textarea
+                name="location_address"
+                class="form-control"
+                id="location_address"
+                required></textarea>
+            </div>
+
+            <div class="mb-3">
+              <label for="latitude" class="form-label">Latitude</label>
+              <p style="font-size: 0.8rem">
+                <i>*contoh : -7.5273765</i>
+              </p>
+              <input
+                type="text"
+                name="latitude"
+                class="form-control"
+                id="latitude"
+                required />
+            </div>
+
+            <div class="mb-3">
+              <label for="longitude" class="form-label">Longitude</label>
+              <p style="font-size: 0.8rem">
+                <i>*contoh : 108.085789</i>
+              </p>
+              <input
+                type="text"
+                class="form-control"
+                name="longitude"
+                id="longitude"
+                required />
+            </div>
+
+            <div class="mb-3">
+              <label for="location_code" class="form-label">Kode Lokasi</label>
+              <p style="font-size: 0.8rem">
+                <i>*contoh : P9432040101</i>
+              </p>
+              <input
+                type="text"
+                class="form-control"
+                name="location_code"
+                id="location_code" />
+            </div>
+
+            <div class="mb-3">
+              <label for="operational" class="form-label">
+                Jam Operasional
+              </label>
+              <p style="font-size: 0.8rem">
+                <i>*contoh : 07.00 - 15.45</i>
+              </p>
+              <div class="row">
+                <div class="col-6">
+                  <label for="op_start" class="form-label">Awal</label>
+                  <input
+                    type="time"
+                    class="form-control col-5"
+                    id="op_start"
+                    placeholder="Awal"
+                    required />
+                </div>
+                <div class="col-6">
+                  <label for="op_end" class="form-label">Akhir</label>
+                  <input
+                    type="time"
+                    class="form-control col-5"
+                    id="op_end"
+                    placeholder="Akhir"
+                    required />
+                </div>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="electric_resources" class="form-label">
+                Sumber Listrik
+              </label>
+              <p style="font-size: 0.8rem">
+                <i>*contoh : PLN, Pembangkit Listrik Tenaga Air, dll.</i>
+              </p>
+              <input
+                type="text"
+                class="form-control"
+                name="electric_resources"
+                id="electric_resources"
+                required />
+            </div>
+
+            <div class="mb-3">
+              <label for="electric_capacity" class="form-label">
+                Kapasitas Listrik
+              </label>
+              <p style="font-size: 0.8rem">
+                <i>*contoh : 1300VA</i>
+              </p>
+              <input
+                type="text"
+                class="form-control"
+                name="electric_capacity"
+                id="electric_capacity"
+                required />
+            </div>
+
+            <div class="mb-3">
+              <label for="id_pelanggan" class="form-label">ID Pelanggan</label>
+              <p style="font-size: 0.8rem">
+                <i>*contoh : 01234567891</i>
+              </p>
+              <input
+                type="text"
+                class="form-control"
+                name="id_pelanggan"
+                id="id_pelanggan"
+                required />
+            </div>
+
+            <div class="mb-3 mt-3">
+              <label for="signal_available" class="form-label">
+                Sinyal Yang Tersedia
+              </label>
+              <select
+                id="signal_available"
+                name="signal_available"
+                class="form-select"
+                required>
+                <option disabled selected></option>
+                <option value="2G">2G</option>
+                <option value="3G">3G</option>
+                <option value="4G">4G</option>
+                <option value="5G">5G</option>
+              </select>
+            </div>
+
+            <div class="mb-3">
+              <label for="operator" class="form-label">Jenis Operator</label>
+              <p style="font-size: 0.8rem">
+                <i>*contoh : Telkomsel</i>
+              </p>
+              <input
+                type="text"
+                class="form-control"
+                name="operator"
+                id="operator"
+                required />
+            </div>
+
+            <div class="mb-3 mt-3">
+              <label for="signal_power" class="form-label">
+                Kekuatan Sinyal
+              </label>
+              <select
+                id="signal_power"
+                name="signal_power"
+                class="form-select"
+                required>
+                <option disabled selected></option>
+                <option value="1 Bar (Rendah)">1 Bar (Rendah)</option>
+                <option value="2 Bar (Menengah)">2 Bar (Menengah)</option>
+                <option value="3 Bar (Tinggi)">3 Bar (Tinggi)</option>
+              </select>
+            </div>
+
+            <div class="mb-3">
+              <label for="signal_needed" class="form-label">Kebutuhan</label>
+              <p style="font-size: 0.8rem">
+                <i>*contoh : 5 mbps</i>
+              </p>
+              <input
+                type="text"
+                name="signal_needed"
+                class="form-control"
+                id="signal_needed"
+                required />
+            </div>
+
+            <div class="mb-3">
+              <label for="sector_category" class="form-label">
+                Kategori Sektor
+              </label>
+              <p style="font-size: 0.8rem">
+                <i>*contoh : Pelayanan Kesehatan</i>
+              </p>
+              <input
+                type="text"
+                class="form-control"
+                name="sector_category"
+                id="sector_category"
+                required />
+            </div>
+
+            <div class="mb-3">
+              <label for="priority" class="form-label">
+                Skala Prioritas (Urgensi)
+              </label>
+              <p style="font-size: 0.8rem">
+                <i>*Rendah ke Tinggi / 1-5</i>
+              </p>
+              <select
+                id="priority"
+                name="priority"
+                class="form-select"
+                required>
+                <option disabled selected></option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+              </select>
+            </div>
+
+            <div class="mb-3">
+              <label for="location_image" class="form-label">
+                Foto/Gambar Lokasi
+              </label>
+              <p style="font-size: 0.9rem">
+                <i>
+                  Foto yang diunggah adalah foto lokasi yang akan dipasang
+                  Internet.
+                </i>
+              </p>
+              <p style="font-size: 0.8rem">
+                Upload maksimum 5 file yang didukung: image. Maks 10 MB per
+                file.
+              </p>
+              <input
+                type="file"
+                class="form-control"
+                name="location_image"
+                id="location_image"
+                required />
+            </div>
+          </div>
+          <div class="card-footer">
+            <button type="submit" class="btn btn-primary">Sumbit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="container my-5"><%- include('../components/footer')%></div>
+    <script src="/swaljs"></script>
+
+    <script>
+      const blankspot = document.getElementById("blankspot");
+
+      blankspot.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const submitButton = e.submitter; // Get the submit button that was clicked
+
+        submitButton.disabled = true; // Disable the button
+
+        // Check if any required fields are empty
+        document.querySelectorAll("[required]").forEach((input) => {
+          if (!input.value.trim()) {
+            isValid = false;
+            input.classList.add("is-invalid"); // Add error class for visual feedback
+          } else {
+            input.classList.remove("is-invalid");
+          }
+        });
+
+        const formData = new FormData(blankspot);
+        const op_start = document.getElementById("op_start").value;
+        const op_end = document.getElementById("op_end").value;
+        const operational = `${op_start} - ${op_end}`;
+
+        formData.append("operational", operational);
+
+        fetch("/ip/blankspot", {
+          method: "POST",
+          body: formData,
+        })
+          .then((res) => {
+            if (!res.ok) {
+              throw new Error(res.json());
+            }
+            return res.json();
+          })
+          .then((data) => {
+            Swal.fire({
+              title: data.message,
+              icon: "success",
+            }).then(() => {
+              window.location.href = `/ip/blankspot`;
+            });
+
+            submitButton.disabled = false; // Re-enable the button
+          })
+          .catch((error) => {
+            console.log(error);
+            Swal.fire({
+              title: error.message,
+              icon: "error",
+            }).then(() => {
+              submitButton.disabled = false; // Re-enable the button
+            });
+          });
+      });
+    </script>
+
+    <script src="/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

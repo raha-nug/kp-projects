@@ -5,12 +5,14 @@ const {
   updateInstansiApp,
   deleteInstansi,
   getInstansiByParams,
+  getFormInstansi,
 } = require("../../controllers/instansi-app.controller");
 const { valiadateInstansiApp } = require("../../middleware/validate-input");
 const instansiAppRouter = express.Router();
 
 instansiAppRouter.get("/instansi-app", getInstansi);
 instansiAppRouter.get("/instansi-app/:slug", getInstansiByParams);
+instansiAppRouter.get("/instansi-app/:slug/add", getFormInstansi);
 
 instansiAppRouter.post("/instansi-app", valiadateInstansiApp, createIntansi);
 

@@ -1,0 +1,298 @@
+<h3><b>Data desa blank spot</b></h3>
+<hr class="bg-secondary" />
+<div class="container">
+  <div class="card mt-5">
+    <div class="card-header">
+      <a href="/ip/blankspot/add" class="btn btn-success">
+        <i class="bi bi-plus"></i>
+        Tambah Data
+      </a>
+    </div>
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-hover datatable">
+          <thead>
+            <tr>
+              <th>No</th>
+              <th>Nama Lengkap</th>
+              <th>Email</th>
+              <th>No Telepon</th>
+              <th>Jam Operasional</th>
+              <th>Kecamatan</th>
+              <th>Kelurahan/Desa</th>
+              <th>Lokasi</th>
+              <th>Listrik</th>
+              <th>Foto</th>
+              <th>Aksi</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% data.forEach((data, index)=>{ %>
+            <tr>
+              <td><%=index +1%></td>
+              <td><%=data.name %></td>
+              <td><%=data.email %></td>
+              <td><%=data.phone_number %></td>
+              <td><%=data.operational %></td>
+              <td><%=data.kecamatan %></td>
+              <td><%=data.kelurahan %></td>
+              <td>
+                <button
+                  type="button"
+                  class="btn btn-success"
+                  data-bs-toggle="modal"
+                  data-bs-target="#lokasiModal"
+                  data-name="<%= data.location_name %>"
+                  data-address="<%= data.location_address %>"
+                  data-code="<%= data.location_code %>"
+                  data-latitude="<%= data.latitude %>"
+                  data-longitude="<%= data.longitude %>">
+                  Detail
+                </button>
+              </td>
+              <td>
+                <button
+                  type="button"
+                  class="btn btn-success"
+                  data-bs-toggle="modal"
+                  data-bs-target="#listrikModal"
+                  data-resources="<%= data.electric_resources %>"
+                  data-capacity="<%= data.electric_capacity %>"
+                  data-id-pelanggan="<%= data.id_pelanggan %>"
+                  data-signal="<%= data.signal_available %>"
+                  data-operator="<%= data.operator %>"
+                  data-power="<%= data.signal_power %>"
+                  data-needed="<%= data.signal_needed %>"
+                  data-category="<%= data.sector_category %>"
+                  data-priority="<%= data.priority %>">
+                  Detail
+                </button>
+              </td>
+              <td>
+                <button
+                  type="button"
+                  class="btn btn-success"
+                  data-bs-toggle="modal"
+                  data-bs-target="#imageModal"
+                  data-image="<%= data.location_image %>">
+                  Lihat
+                </button>
+              </td>
+
+              <td>
+                <!-- button -->
+                <div class="d-flex gap-1">
+                  <a class="btn btn-warning" href="#">
+                    <i class="bi bi-pencil-square"></i>
+                  </a>
+                  <button
+                    class="btn btn-danger deleteBlankspot"
+                    data-id="<%=data.id%>">
+                    <i class="bi bi-trash"></i>
+                  </button>
+                </div>
+              </td>
+            </tr>
+            <% }) %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- modal lokasi-->
+<div
+  class="modal fade"
+  id="lokasiModal"
+  tabindex="-1"
+  aria-labelledby="lokasiModalLabel"
+  aria-hidden="true">
+  <div
+    class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="lokasiModalLabel">
+          <b>Lokasi</b>
+        </h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"></button>
+      </div>
+      <div class="modal-body py-3"></div>
+    </div>
+  </div>
+</div>
+<!-- end modal lokasi -->
+
+<!-- modal listrik -->
+<div
+  class="modal fade"
+  id="listrikModal"
+  tabindex="-1"
+  aria-labelledby="listrikModalLabel"
+  aria-hidden="true">
+  <div
+    class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="listrikModalLabel">
+          <b>Listrik</b>
+        </h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"></button>
+      </div>
+      <div class="modal-body py-3"></div>
+    </div>
+  </div>
+</div>
+<!-- end modal listrik -->
+
+<!-- modal listrik -->
+<div
+  class="modal fade"
+  id="imageModal"
+  tabindex="-1"
+  aria-labelledby="imageModalLabel"
+  aria-hidden="true">
+  <div
+    class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="imageModalLabel">
+          <b>Foto Lokasi</b>
+        </h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"></button>
+      </div>
+      <div class="modal-body py-3"></div>
+    </div>
+  </div>
+</div>
+<!-- end modal listrik -->
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const lokasiModal = document.getElementById("lokasiModal");
+    lokasiModal.addEventListener("show.bs.modal", function (event) {
+      const button = event.relatedTarget;
+      const locationName = button.getAttribute("data-name");
+      const locationAddress = button.getAttribute("data-address");
+      const locationCode = button.getAttribute("data-code");
+      const latitude = button.getAttribute("data-latitude");
+      const longitude = button.getAttribute("data-longitude");
+
+      const modalBody = lokasiModal.querySelector(".modal-body");
+      modalBody.innerHTML = `
+      <table class="table">
+        <tr><th>Nama Lokasi</th><td>${locationName}</td></tr>
+        <tr><th>Alamat Lengkap</th><td>${locationAddress}</td></tr>
+        <tr><th>Latitude</th><td>${latitude}</td></tr>
+        <tr><th>Longitude</th><td>${longitude}</td></tr>
+        <tr><th>Kode Lokasi</th><td>${locationCode}</td></tr>
+      </table>
+    `;
+    });
+
+    const listrikModal = document.getElementById("listrikModal");
+    listrikModal.addEventListener("show.bs.modal", function (event) {
+      const button = event.relatedTarget;
+      const electricResources = button.getAttribute("data-resources");
+      const electricCapacity = button.getAttribute("data-capacity");
+      const idPelanggan = button.getAttribute("data-id-pelanggan");
+      const signal = button.getAttribute("data-signal");
+      const operator = button.getAttribute("data-operator");
+      const power = button.getAttribute("data-power");
+      const needed = button.getAttribute("data-needed");
+      const category = button.getAttribute("data-category");
+      const priority = button.getAttribute("data-priority");
+
+      const modalBody = listrikModal.querySelector(".modal-body");
+      modalBody.innerHTML = `
+      <table class="table">
+        <tr><th>Sumber Listrik</th><td>${electricResources}</td></tr>
+        <tr><th>Kapasitas Listrik</th><td>${electricCapacity}</td></tr>
+        <tr><th>ID Pelanggan</th><td>${idPelanggan}</td></tr>
+        <tr><th>Sinyal</th><td>${signal}</td></tr>
+        <tr><th>Operator</th><td>${operator}</td></tr>
+        <tr><th>Kekuatan Sinyal</th><td>${power}</td></tr>
+        <tr><th>Kebutuhan Sinyal</th><td>${needed}</td></tr>
+        <tr><th>Kategori Sektor</th><td>${category}</td></tr>
+        <tr><th>Skala Prioritas</th><td>${priority}</td></tr>
+      </table>
+    `;
+    });
+
+    const imageModal = document.getElementById("imageModal");
+    imageModal.addEventListener("show.bs.modal", function (event) {
+      const button = event.relatedTarget;
+      const imageUrl = button.getAttribute("data-image");
+
+      const modalBody = imageModal.querySelector(".modal-body");
+      modalBody.innerHTML = `
+      <img src="${imageUrl}" alt="Location Image" class="img-fluid">
+    `;
+    });
+  });
+</script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll(".deleteBlankspot").forEach((button) => {
+      button.addEventListener("click", function (e) {
+        e.preventDefault(); // Prevent the default button action
+
+        const blankspotId = this.getAttribute("data-id");
+
+        Swal.fire({
+          title: "Anda yakin ingin menghapus?",
+          text: "Data yang dihapus tidak dapat dikembalikan!",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "Ya, hapus!",
+          cancelButtonText: "Batal",
+        }).then((result) => {
+          if (result.isConfirmed) {
+            fetch(`/ip/blankspot/${blankspotId}/delete`, {
+              method: "DELETE",
+            })
+              .then((res) => {
+                if (!res.ok) {
+                  throw new Error("Network response was not ok");
+                }
+                return res.json();
+              })
+              .then((data) => {
+                Swal.fire({
+                  title: "Terhapus!",
+                  text: data.message,
+                  icon: "success",
+                }).then(() => {
+                  // Refresh page after successful deletion
+                  window.location.reload();
+                });
+              })
+              .catch((error) => {
+                console.error("Error:", error);
+                Swal.fire(
+                  "Gagal!",
+                  "Terjadi kesalahan saat menghapus data.",
+                  "error"
+                );
+              });
+          }
+        });
+      });
+    });
+  });
+</script>

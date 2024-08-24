@@ -1,37 +1,15 @@
 const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 
-const getFormApps = async (req, res) => {
-  const { slug } = req.params;
-  try {
-    if (slug != "desa" && slug != "dinas") {
-      return res.status(404).send({
-        status: "error",
-        message: "Form tidak tersedia",
-      });
-    }
-
-    res.render("forms/apps", {
-      type: slug,
-    });
-  } catch (error) {
-    res.status(500).send({
-      status: "error",
-      message: error.message || "Terjadi kesalahan saat mengambil data",
-    });
-  }
-};
-
 const getApps = async (req, res) => {
   const id = req.query.instansi_id;
   try {
-
-     if (!id) {
-       return res.status(404).send({
-         status: "error",
-         message: "Harap masukan instansi_id",
-       });
-     }
+    if (!id) {
+      return res.status(404).send({
+        status: "error",
+        message: "Harap masukan instansi_id",
+      });
+    }
 
     const apps = await prisma.usedApps.findMany({
       where: {
@@ -201,7 +179,6 @@ const deleteApp = async (req, res) => {
 module.exports = {
   getApps,
   getAppById,
-  getFormApps,
   createApp,
   updateApp,
   deleteApp,

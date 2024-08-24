@@ -5,13 +5,11 @@ const {
   createApp,
   updateApp,
   deleteApp,
-  getFormApps,
 } = require("../../controllers/apps.controller");
 const { validateUsedApps } = require("../../middleware/validate-input");
 const appsRouter = express.Router();
 
 appsRouter.get("/apps", getApps);
-appsRouter.get("/apps/form/:slug", getFormApps);
 appsRouter.get("/apps/:id", getAppById);
 appsRouter.post("/apps", validateUsedApps, createApp);
 appsRouter.put("/apps/:id/edit", validateUsedApps, updateApp);

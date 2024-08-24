@@ -3,11 +3,22 @@ const prisma = new PrismaClient();
 const path = require("path");
 const fs = require("fs");
 
+const getFormBlankspot = async (req, res) => {
+  try {
+    res.render("forms/blankspot");
+  } catch (error) {
+    res.status(500).send({
+      status: "error",
+      message: "Terjadi kesalahan saat mengambil data",
+    });
+  }
+};
 const getDesaBlankspot = async (req, res) => {
   try {
     const allDesa = await prisma.desaBlankspot.findMany();
-    res.status(200).send({
+    res.render("dashboard", {
       status: "success",
+      type: "blankspot",
       total_data: allDesa.length,
       data: allDesa,
     });
@@ -140,6 +151,7 @@ const deleteDesaBlankspot = async (req, res) => {
 };
 
 module.exports = {
+  getFormBlankspot,
   getDesaBlankspot,
   createDesaBlankspot,
   updateDesaBlankspot,

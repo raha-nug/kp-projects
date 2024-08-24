@@ -18,12 +18,12 @@ const getInstansiByParams = async (req, res) => {
       },
     });
 
-    if (instansi.length === 0) {
-      return res.status(404).send({
-        status: "error",
-        message: "Data tidak diemukan",
-      });
-    }
+    // if (instansi.length === 0) {
+    //   return res.status(404).send({
+    //     status: "error",
+    //     message: "Data tidak diemukan",
+    //   });
+    // }
 
     const totalInstansi = await prisma.instansi.count({
       where: {
@@ -58,6 +58,27 @@ const getInstansiByParams = async (req, res) => {
     res.status(500).send({
       status: "error",
       message: error.message || "Terjadi kesalahan ketika mengambil data",
+    });
+  }
+};
+
+const getFormInstansi = async (req, res) => {
+  const { slug } = req.params;
+  try {
+    if (slug != "desa" && slug != "dinas") {
+      return res.status(404).send({
+        status: "error",
+        message: "Form tidak tersedia",
+      });
+    }
+
+    res.render("forms/apps", {
+      type: slug,
+    });
+  } catch (error) {
+    res.status(500).send({
+      status: "error",
+      message: error.message || "Terjadi kesalahan saat mengambil data",
     });
   }
 };
@@ -214,6 +235,7 @@ const deleteInstansi = async (req, res) => {
 
 module.exports = {
   getInstansiByParams,
+  getFormInstansi,
   getInstansi,
   createIntansi,
   updateInstansiApp,

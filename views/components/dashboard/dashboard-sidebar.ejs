@@ -2,7 +2,7 @@
 <aside id="sidebar" class="sidebar">
   <ul class="sidebar-nav" id="sidebar-nav">
     <li class="nav-item">
-      <a class="nav-link <%= !type ? '': 'collapsed'%>" href="ip/dashboard">
+      <a class="nav-link <%= !type ? '': 'collapsed'%>" href="/ip/dashboard">
         <i class="bi bi-grid"></i>
         <span>Dashboard</span>
       </a>
@@ -11,7 +11,7 @@
 
     <li class="nav-item">
       <a
-        class="nav-link <%= type == 'desa' ? '': 'collapsed'%>"
+        class="nav-link <%= type == 'desa' || type == 'blankspot' ? '': 'collapsed'%>"
         data-bs-target="#components-nav"
         data-bs-toggle="collapse"
         href="#">
@@ -24,7 +24,9 @@
         class="nav-content collapse <%= type == 'desa' || type == 'blankspot' ? 'show': ''%>"
         data-bs-parent="#sidebar-nav">
         <li>
-          <a href="" class="<%= type == 'blankspot' ? 'active': ''%>">
+          <a
+            href="/ip/blankspot"
+            class="<%= type == 'blankspot' ? 'active': ''%>">
             <i class="bi bi-circle"></i>
             <span>Blankspot</span>
           </a>

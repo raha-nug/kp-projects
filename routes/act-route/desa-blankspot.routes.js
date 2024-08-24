@@ -11,6 +11,7 @@ const {
   createDesaBlankspot,
   updateDesaBlankspot,
   deleteDesaBlankspot,
+  getFormBlankspot,
 } = require("../../controllers/desa-blankspot.controller");
 
 const storage = multer.diskStorage({
@@ -27,6 +28,7 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
+desaBlankspotRouter.get("/blankspot/add", getFormBlankspot);
 desaBlankspotRouter.get("/blankspot", getDesaBlankspot);
 
 desaBlankspotRouter.post(

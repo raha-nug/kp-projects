@@ -3,17 +3,15 @@
 </h3>
 <div class="card">
   <div class="card-header">
-    <a href="/ip/apps/form/desa" class="btn btn-success">
+    <a href="/ip/instansi-app/<%=type%>/add" class="btn btn-success">
       <i class="bi bi-plus"></i>
       Tambah Data
     </a>
   </div>
   <div class="card-body">
     <div class="table-responsive">
-      <table
-        class="table table-hover table-borderless pt-4 p-1 datatable"
-        id="jumlah_desa">
-        <thead class="table-primary">
+      <table class="table table-hover datatable">
+        <thead>
           <tr>
             <th>No</th>
             <th>Desa</th>
@@ -21,9 +19,9 @@
             <th>Kecamatan</th>
             <% } %>
             <th>Jumlah Aplikasi</th>
-            <th>Aplikasi</th>
             <th>Nama admin</th>
             <th>No. Hp</th>
+            <th>Aplikasi</th>
             <th>Aksi</th>
           </tr>
         </thead>
@@ -36,6 +34,8 @@
             <td><%=instansi.kecamatan %></td>
             <% } %>
             <td><%=instansi.total_apps %></td>
+            <td><%=instansi.admin_name%></td>
+            <td><%=instansi.admin_phone_number%></td>
             <td>
               <button
                 type="button"
@@ -46,15 +46,15 @@
                 Detail
               </button>
             </td>
-            <td><%=instansi.admin_name%></td>
-            <td><%=instansi.admin_phone_number%></td>
             <td>
               <!-- button -->
               <div class="d-flex gap-1">
                 <a class="btn btn-warning" href="/form-aplikasi">
                   <i class="bi bi-pencil-square"></i>
                 </a>
-                <button class="btn btn-danger">
+                <button
+                  class="btn btn-danger deleteApp"
+                  data-id="<%=instansi.instansi_id%>">
                   <i class="bi bi-trash"></i>
                 </button>
               </div>
@@ -87,10 +87,63 @@
           data-bs-dismiss="modal"
           aria-label="Close"></button>
       </div>
-      <div class="modal-body py-5"></div>
+      <div class="modal-body py-3"></div>
     </div>
   </div>
 </div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll(".deleteApp").forEach((button) => {
+      button.addEventListener("click", function (e) {
+        e.preventDefault(); // Mencegah aksi default (misalnya navigasi)
+
+        const instansiId = this.getAttribute("data-id");
+
+        Swal.fire({
+          title: "Anda yakin ingin menghapus?",
+          text: "Data yang dihapus tidak dapat dikembalikan!",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "Ya, hapus!",
+          cancelButtonText: "Batal",
+        }).then((result) => {
+          if (result.isConfirmed) {
+            fetch(`/ip/instansi-app/${instansiId}/delete`, {
+              method: "DELETE",
+            })
+              .then((res) => {
+                if (!res.ok) {
+                  throw new Error("Network response was not ok");
+                }
+                return res.json();
+              })
+              .then((data) => {
+                Swal.fire({
+                  title: "Terhapus!",
+                  text: data.message,
+                  icon: "success",
+                }).then(() => {
+                  // refresh halaman setelah penghapusan berhasil
+                  window.location.reload();
+                });
+              })
+              .catch((error) => {
+                console.error("Error:", error);
+                Swal.fire(
+                  "Gagal!",
+                  "Terjadi kesalahan saat menghapus data.",
+                  "error"
+                );
+              });
+          }
+        });
+      });
+    });
+  });
+</script>
 
 <script>
   // Mendapatkan referensi modal

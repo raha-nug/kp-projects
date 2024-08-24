@@ -2,8 +2,17 @@
   <h1>Dashboard</h1>
   <nav>
     <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="">Home</a></li>
-      <li class="breadcrumb-item active">Dashboard</li>
+      <li class="breadcrumb-item"><a href="/ip/dashboard">Home</a></li>
+      <% if(type == 'desa'){ %>
+      <li class="breadcrumb-item">Desa</li>
+      <li class="breadcrumb-item active">Aplikasi</li>
+      <% }else if(type == 'dinas'){ %>
+      <li class="breadcrumb-item active">Dinas</li>
+
+      <% }else if(type == 'blankspot'){ %>
+      <li class="breadcrumb-item">Desa</li>
+      <li class="breadcrumb-item active">Dinas</li>
+      <% } %>
     </ol>
   </nav>
 </div>

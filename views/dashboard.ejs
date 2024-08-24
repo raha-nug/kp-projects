@@ -18,7 +18,27 @@
         <div class="container">
           <!-- content -->
 
-          <%- include('pages/list-apps',{data: data, type: type}) %>
+          <% if(type == 'desa' || type == 'dinas'){ %>
+
+          <!-- render list app -->
+          <%- include('pages/list-apps',{data: data, type: type,
+          total_instansi:total_instansi}) %>
+          <!-- end render list app -->
+
+          <% }else if (type == 'blankspot'){ %>
+
+          <!-- render blankspot -->
+          <%- include('pages/list-blankspot',{data: data, type: type,
+          total_data:total_data}) %>
+          <!-- end render list app -->
+
+          <% }else if (type == 'dashboard'){ %>
+
+          <!-- render blankspot -->
+          <%- include('pages/dashboard-page',{data: data, type: type}) %>
+          <!-- end render list app -->
+
+          <% } %>
         </div>
       </section>
       <%- include('components/footer')%>
@@ -31,6 +51,7 @@
       <i class="bi bi-arrow-up-short"></i>
     </a>
 
+    <script src="/swaljs"></script>
     <script src="/js/simple-datatables.js"></script>
     <script src="/js/main.js"></script>
     <script src="/js/bootstrap.bundle.min.js"></script>
