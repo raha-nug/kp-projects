@@ -2,7 +2,7 @@
 <aside id="sidebar" class="sidebar">
   <ul class="sidebar-nav" id="sidebar-nav">
     <li class="nav-item">
-      <a class="nav-link" href="index.html">
+      <a class="nav-link <%= !type ? '': 'collapsed'%>" href="ip/dashboard">
         <i class="bi bi-grid"></i>
         <span>Dashboard</span>
       </a>
@@ -11,7 +11,7 @@
 
     <li class="nav-item">
       <a
-        class="nav-link collapsed"
+        class="nav-link <%= type == 'desa' ? '': 'collapsed'%>"
         data-bs-target="#components-nav"
         data-bs-toggle="collapse"
         href="#">
@@ -21,16 +21,18 @@
       </a>
       <ul
         id="components-nav"
-        class="nav-content collapse"
+        class="nav-content collapse <%= type == 'desa' || type == 'blankspot' ? 'show': ''%>"
         data-bs-parent="#sidebar-nav">
         <li>
-          <a href="components-alerts.html">
+          <a href="" class="<%= type == 'blankspot' ? 'active': ''%>">
             <i class="bi bi-circle"></i>
             <span>Blankspot</span>
           </a>
         </li>
         <li>
-          <a href="components-accordion.html">
+          <a
+            href="/ip/instansi-app/desa"
+            class="<%= type == 'desa' ? 'active': ''%>">
             <i class="bi bi-circle"></i>
             <span>Aplikasi</span>
           </a>
@@ -40,7 +42,9 @@
     <!-- End Components Nav -->
 
     <li class="nav-item">
-      <a class="nav-link collapsed" href="">
+      <a
+        class="nav-link <%= type == 'dinas' ? '': 'collapsed'%>"
+        href="/ip/instansi-app/dinas">
         <i class="bi bi-building"></i>
         <span>Dinas</span>
       </a>

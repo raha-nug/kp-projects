@@ -3,6 +3,7 @@
   <head>
     <%- include('../components/headlink')%>
     <title>Pendataan Penggunaan Aplikasi</title>
+    <link rel="stylesheet" href="/swalcss" />
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-primary fixed-top">
@@ -189,6 +190,7 @@
     </div>
 
     <div class="container"><%- include('../components/footer')%></div>
+    <script src="/swaljs"></script>
 
     <script>
       let appIndex = 1; // Dimulai dari 1 karena elemen pertama sudah ada dengan index 0
@@ -382,17 +384,25 @@
             return res.json();
           })
           .then((data) => {
-            console.log(data);
+            Swal.fire({
+              title: data.message,
+              icon: "success",
+            }).then(() => {
+              window.location.href = `/ip/instansi-app/${type}`;
+            });
+
             submitButton.disabled = false; // Re-enable the button
 
-            window.location.href = `/ip/instansi-app/${type}`;
+            // window.location.href = `/ip/instansi-app/${type}`;
           })
           .catch((error) => {
-            console.error(
-              "There was a problem with your fetch operation:",
-              error
-            );
-            submitButton.disabled = false; // Re-enable the button
+            console.log(error);
+            Swal.fire({
+              title: error.message,
+              icon: "error",
+            }).then(() => {
+              submitButton.disabled = false; // Re-enable the button
+            });
           });
       });
     </script>

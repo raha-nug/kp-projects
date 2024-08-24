@@ -10,16 +10,15 @@
 
   <body>
     <%- include('components/dashboard/dashboard-header')%> <%-
-    include('components/dashboard/dashboard-sidebar')%>
+    include('components/dashboard/dashboard-sidebar', {type: type})%>
 
     <main id="main" class="main">
       <%- include('components/dashboard/dashboard-breadcrums')%>
-
       <section class="section">
         <div class="container">
           <!-- content -->
 
-          <%- include('pages/desa-app',{data: data}) %>
+          <%- include('pages/list-apps',{data: data, type: type}) %>
         </div>
       </section>
       <%- include('components/footer')%>

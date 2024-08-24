@@ -12,6 +12,14 @@ app.use(express.static("public"));
 app.set("view engine", "ejs");
 
 app.use("/css", express.static(__dirname + "/node_modules/bootstrap/dist/css"));
+app.use(
+  "/swaljs",
+  express.static(__dirname + "/node_modules/sweetalert2/dist/sweetalert2.js")
+);
+app.use(
+  "/swalcss",
+  express.static(__dirname + "/node_modules/sweetalert2/dist/sweetalert2.css")
+);
 app.use("/js", express.static(__dirname + "/node_modules/bootstrap/dist/js"));
 app.use(
   "/icons",

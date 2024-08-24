@@ -1,5 +1,5 @@
 <h3 class="mt-5 mb-3">
-  <b>Data Aplikasi yang digunakan oleh desa</b>
+  <b>Data Aplikasi yang digunakan oleh <%=type%></b>
 </h3>
 <div class="card">
   <div class="card-header">
@@ -17,7 +17,9 @@
           <tr>
             <th>No</th>
             <th>Desa</th>
+            <% if(type === 'desa'){ %>
             <th>Kecamatan</th>
+            <% } %>
             <th>Jumlah Aplikasi</th>
             <th>Aplikasi</th>
             <th>Nama admin</th>
@@ -26,24 +28,26 @@
           </tr>
         </thead>
         <tbody>
-          <% data.forEach((desa, index)=>{ %>
+          <% data.forEach((instansi, index)=>{ %>
           <tr>
             <td><%=index + 1 %></td>
-            <td><%=desa.instansi_name %></td>
-            <td><%=desa.kecamatan %></td>
-            <td><%=desa.total_apps %></td>
+            <td><%=instansi.instansi_name %></td>
+            <% if(type === 'desa'){ %>
+            <td><%=instansi.kecamatan %></td>
+            <% } %>
+            <td><%=instansi.total_apps %></td>
             <td>
               <button
                 type="button"
                 class="btn btn-success"
                 data-bs-toggle="modal"
                 data-bs-target="#exampleModal"
-                data-apps="<%= JSON.stringify(desa.apps) %>">
+                data-apps="<%= JSON.stringify(instansi.apps) %>">
                 Detail
               </button>
             </td>
-            <td><%=desa.admin_name%></td>
-            <td><%=desa.admin_phone_number%></td>
+            <td><%=instansi.admin_name%></td>
+            <td><%=instansi.admin_phone_number%></td>
             <td>
               <!-- button -->
               <div class="d-flex gap-1">
