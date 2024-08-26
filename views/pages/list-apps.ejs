@@ -3,7 +3,7 @@
 </h3>
 <div class="card">
   <div class="card-header">
-    <a href="/ip/instansi-app/<%=type%>/add" class="btn btn-success">
+    <a href="/ip/dashboard/instansi-app/<%=type%>/add" class="btn btn-success">
       <i class="bi bi-plus"></i>
       Tambah Data
     </a>
@@ -49,7 +49,9 @@
             <td>
               <!-- button -->
               <div class="d-flex gap-1">
-                <a class="btn btn-warning" href="/form-aplikasi">
+                <a
+                  class="btn btn-warning"
+                  href="/ip/dashboard/instansi-app/<%=instansi.instansi_id%>/edit">
                   <i class="bi bi-pencil-square"></i>
                 </a>
                 <button
@@ -111,7 +113,7 @@
           cancelButtonText: "Batal",
         }).then((result) => {
           if (result.isConfirmed) {
-            fetch(`/ip/instansi-app/${instansiId}/delete`, {
+            fetch(`/ip/dashboard/instansi-app/${instansiId}/delete`, {
               method: "DELETE",
             })
               .then((res) => {

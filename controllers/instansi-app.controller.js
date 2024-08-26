@@ -53,6 +53,7 @@ const getInstansiByParams = async (req, res) => {
       type: slug,
       total_instansi: totalInstansi,
       data: mappedInstansi,
+      name: req.user.name,
     });
   } catch (error) {
     res.status(500).send({
@@ -74,6 +75,37 @@ const getFormInstansi = async (req, res) => {
 
     res.render("forms/apps", {
       type: slug,
+    });
+  } catch (error) {
+    res.status(500).send({
+      status: "error",
+      message: error.message || "Terjadi kesalahan saat mengambil data",
+    });
+  }
+};
+
+const getFormEditInstansi = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const instansi = await prisma.instansi.findUnique({
+      where: {
+        id: id,
+      },
+      include: {
+        apps: true,
+      },
+    });
+
+    if (!instansi) {
+      return res.status(404).send({
+        status: "error",
+        message: "Form edit tidak tersedia",
+      });
+    }
+
+    res.render("forms/edit-apps", {
+      type: instansi.type,
+      prev_val: instansi,
     });
   } catch (error) {
     res.status(500).send({
@@ -161,10 +193,17 @@ const createIntansi = async (req, res) => {
 
 const updateInstansiApp = async (req, res) => {
   const { id } = req.params;
+  const { apps, ...instansiData } = req.body;
   try {
+    if (!id) {
+      return res.status(404).send({
+        status: "error",
+        message: "Parameter id tidak dimasukan",
+      });
+    }
     const instansi = await prisma.instansi.findUnique({
       where: {
-        id: Number(id),
+        id: id,
       },
     });
 
@@ -176,8 +215,20 @@ const updateInstansiApp = async (req, res) => {
     }
 
     const updatedInstansi = await prisma.instansi.update({
-      where: { id: Number(id) },
-      data: req.body,
+      where: { id: id },
+      data: {
+        ...instansiData,
+        apps: {
+          deleteMany: {}, // This will delete all existing apps
+          create: apps.map((app) => ({
+            app_name: app.app_name,
+            used_since: new Date(app.used_since),
+            status: app.status,
+            app_dev: app.app_dev,
+            app_url: app.app_url,
+          })),
+        },
+      },
     });
 
     res.status(200).send({
@@ -186,6 +237,7 @@ const updateInstansiApp = async (req, res) => {
       data: updatedInstansi,
     });
   } catch (error) {
+    console.error("error update instansi : ", error);
     res.status(500).send({
       status: "error",
       message: error.message || "Terjadi kesalahan saat mengubah data",
@@ -198,7 +250,7 @@ const deleteInstansi = async (req, res) => {
   try {
     const instansi = await prisma.instansi.findUnique({
       where: {
-        id: Number(id),
+        id: id,
       },
     });
 
@@ -211,13 +263,13 @@ const deleteInstansi = async (req, res) => {
 
     await prisma.usedApps.deleteMany({
       where: {
-        instansi_id: Number(id),
+        instansi_id: id,
       },
     });
 
     await prisma.instansi.delete({
       where: {
-        id: Number(id),
+        id: id,
       },
     });
 
@@ -234,6 +286,7 @@ const deleteInstansi = async (req, res) => {
 };
 
 module.exports = {
+  getFormEditInstansi,
   getInstansiByParams,
   getFormInstansi,
   getInstansi,

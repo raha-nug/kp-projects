@@ -14,8 +14,16 @@ datasource db {
 }
 
 
+model Users{
+  id String @default(uuid()) @id
+  name String
+  email String @unique
+  password String 
+}
+
+
 model DesaBlankspot{
-  id Int @default(autoincrement()) @id
+  id String @default(uuid()) @id
   name String
   email String
   phone_number String
@@ -41,7 +49,7 @@ model DesaBlankspot{
 
 
 model Instansi{
-  id Int @default(autoincrement()) @id
+  id String @default(uuid()) @id
   name String
   kecamatan String?
   type String
@@ -51,12 +59,12 @@ model Instansi{
 }
 
 model UsedApps{
-  id Int @default(autoincrement()) @id
+  id String @default(uuid()) @id
   app_name String
   status String
   used_since DateTime
   app_dev String
   app_url String
   instansi Instansi @relation(fields: [instansi_id], references: [id])
-  instansi_id Int
+  instansi_id String
 }

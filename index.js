@@ -4,10 +4,14 @@ const { sekreRouter } = require("./routes/sekre.routes");
 const { bidang } = require("./utils/data");
 const app = express();
 const path = require("path");
+const bodyParser = require("body-parser");
+const cookieParser = require("cookie-parser");
 
 const port = 3000;
 
-app.use(express.urlencoded());
+
+app.use(cookieParser())
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 app.set("view engine", "ejs");
 

@@ -24,7 +24,11 @@ const getSummary = async (req, res) => {
       total_desa_blankspot: allBlankspot,
     };
 
-    res.render("dashboard", { data: data, type: "dashboard" });
+    res.render("dashboard", {
+      data: data,
+      type: "dashboard",
+      name: req.user.name,
+    });
   } catch (error) {}
 };
 

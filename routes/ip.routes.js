@@ -9,10 +9,8 @@ const {
 
   layananIP,
 } = require("../utils/data");
-const desaBlankspotRouter = require("./act-route/desa-blankspot.routes");
-const instansiAppRouter = require("./act-route/instansi-app.routes");
-const appsRouter = require("./act-route/apps.routes");
 const dashboardRouter = require("./dashboard.routes");
+const authRouter = require("./auth/auth.routes");
 
 const ipRouter = express.Router();
 
@@ -20,11 +18,9 @@ ipRouter.get("/", (req, res) => {
   res.render("landing-page-ip", { layananIp: layananIP });
 });
 
-ipRouter.use('/dashboard', dashboardRouter)
+ipRouter.use("/dashboard", dashboardRouter);
 
-ipRouter.use("/", desaBlankspotRouter);
-ipRouter.use("/", instansiAppRouter);
-ipRouter.use("/", appsRouter);
+ipRouter.use("/auth", authRouter);
 
 ipRouter.get("/:slug", (req, res) => {
   const slug = `/ip/${req.params.slug}`;

@@ -13,6 +13,32 @@ const getFormBlankspot = async (req, res) => {
     });
   }
 };
+
+const getFormEditBlankspot = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const desa = await prisma.desaBlankspot.findUnique({
+      where: {
+        id: id,
+      },
+    });
+
+    if (!desa) {
+      return res.status(404).send({
+        status: "error",
+        message: "Data tidak ditemukan",
+      });
+    }
+
+    res.render("forms/edit-blankspot", { prev_val: desa });
+  } catch (error) {
+    res.status(500).send({
+      status: "error",
+      message: "Terjadi kesalahan saat mengambil data",
+    });
+  }
+};
+
 const getDesaBlankspot = async (req, res) => {
   try {
     const allDesa = await prisma.desaBlankspot.findMany();
@@ -20,6 +46,7 @@ const getDesaBlankspot = async (req, res) => {
       status: "success",
       type: "blankspot",
       total_data: allDesa.length,
+      name: req.user.name,
       data: allDesa,
     });
   } catch (error) {
@@ -58,7 +85,7 @@ const updateDesaBlankspot = async (req, res) => {
   try {
     const desa = await prisma.desaBlankspot.findUnique({
       where: {
-        id: Number(req.params.id),
+        id: req.params.id,
       },
     });
 
@@ -85,7 +112,7 @@ const updateDesaBlankspot = async (req, res) => {
 
     const updatedDesa = await prisma.desaBlankspot.update({
       where: {
-        id: Number(req.params.id),
+        id: req.params.id,
       },
       data: {
         ...req.body,
@@ -110,7 +137,7 @@ const deleteDesaBlankspot = async (req, res) => {
   try {
     const desa = await prisma.desaBlankspot.findUnique({
       where: {
-        id: Number(req.params.id),
+        id: req.params.id,
       },
     });
 
@@ -134,7 +161,7 @@ const deleteDesaBlankspot = async (req, res) => {
 
     await prisma.desaBlankspot.delete({
       where: {
-        id: Number(req.params.id),
+        id: req.params.id,
       },
     });
 
@@ -152,6 +179,7 @@ const deleteDesaBlankspot = async (req, res) => {
 
 module.exports = {
   getFormBlankspot,
+  getFormEditBlankspot,
   getDesaBlankspot,
   createDesaBlankspot,
   updateDesaBlankspot,

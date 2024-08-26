@@ -32,6 +32,16 @@ const usedAppsSchema = z.object({
   app_url: z.string().url("Format URL tidak valid"),
 });
 
+const registerScehma = z.object({
+  name: z.string().min(1, "Nama harus diisi"),
+  email: z.string().email("Format email tidak valid"),
+  password: z.string().min(1, "Password harus diisi"),
+});
+const loginSchema = z.object({
+  email: z.string().email("Format email tidak valid"),
+  password: z.string().min(1, "Password harus diisi"),
+});
+
 const instansiAppSchema = z.object({
   name: z.string().min(1, "Nama desa harus diisi"),
   kecamatan: z.string().optional(),
@@ -44,6 +54,30 @@ const instansiAppSchema = z.object({
     .regex(/^\d+$/, "Nomor HP admin harus berupa angka"),
 });
 
+//validate register
+const validateRegister = (req, res, next) => {
+  try {
+    registerScehma.parse(req.body);
+    next(); // Lanjutkan jika validasi berhasil
+  } catch (e) {
+    return res.status(400).send({
+      status: "error",
+      message: e.errors.map((err) => err.message),
+    });
+  }
+};
+//validate login
+const validateLogin = (req, res, next) => {
+  try {
+    loginSchema.parse(req.body);
+    next(); // Lanjutkan jika validasi berhasil
+  } catch (e) {
+    return res.status(400).send({
+      status: "error",
+      message: e.errors.map((err) => err.message),
+    });
+  }
+};
 //validate desa app
 const valiadateInstansiApp = (req, res, next) => {
   try {
@@ -99,9 +133,10 @@ const validateDesaBlankspot = (req, res, next) => {
 };
 
 module.exports = {
+  validateRegister,
+  validateLogin,
   checkFilePresence,
   valiadateInstansiApp,
   validateDesaBlankspot,
-  validateUsedApps
-
+  validateUsedApps,
 };

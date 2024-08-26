@@ -3,7 +3,7 @@
 <div class="container">
   <div class="card mt-5">
     <div class="card-header">
-      <a href="/ip/blankspot/add" class="btn btn-success">
+      <a href="/ip/dashboard/blankspot/add" class="btn btn-success">
         <i class="bi bi-plus"></i>
         Tambah Data
       </a>
@@ -82,7 +82,9 @@
               <td>
                 <!-- button -->
                 <div class="d-flex gap-1">
-                  <a class="btn btn-warning" href="#">
+                  <a
+                    class="btn btn-warning"
+                    href="/ip/dashboard/blankspot/<%=data.id%>/edit">
                     <i class="bi bi-pencil-square"></i>
                   </a>
                   <button
@@ -263,7 +265,7 @@
           cancelButtonText: "Batal",
         }).then((result) => {
           if (result.isConfirmed) {
-            fetch(`/ip/blankspot/${blankspotId}/delete`, {
+            fetch(`/ip/dashboard/blankspot/${blankspotId}/delete`, {
               method: "DELETE",
             })
               .then((res) => {
