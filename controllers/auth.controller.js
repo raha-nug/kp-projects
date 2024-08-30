@@ -3,6 +3,42 @@ const prisma = new PrismaClient();
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
+const createAdmin = async (req, res) => {
+
+  try {
+
+    const email = process.env.ADMIN_EMAIL
+    const password = process.env.ADMIN_PASSWORD;
+    const user = await prisma.users.findUnique({
+      where: {
+        email,
+      },
+    });
+
+    if (user) {
+      return res.status(404).send({
+        status: "error",
+        message: "Email telah digunakan",
+      });
+    }
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    const newUser = await prisma.users.create({
+      data: {
+        ...req.body,
+        password: hashedPassword,
+      },
+    });
+
+    res.redirect('/ip/auth/login')
+  } catch (error) {
+    res.status(500).send({
+      status: "error",
+      message: error.message || "Terjadi kesalahan saat mendaftar",
+    });
+  }
+};
 const register = async (req, res) => {
   const { email, password } = req.body;
 
@@ -83,4 +119,4 @@ const logout = (req, res) => {
   res.redirect("/ip/auth/login");
 };
 
-module.exports = { register, login, logout };
+module.exports = { register, login, logout, createAdmin };

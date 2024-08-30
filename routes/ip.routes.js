@@ -1,4 +1,6 @@
 const express = require("express");
+const { PrismaClient } = require("@prisma/client");
+const prisma = new PrismaClient();
 const {
   sopCreateEmail,
   sopCreateEmailEGoverment,
@@ -22,7 +24,7 @@ ipRouter.use("/dashboard", dashboardRouter);
 
 ipRouter.use("/auth", authRouter);
 
-ipRouter.get("/:slug", (req, res) => {
+ipRouter.get("/:slug", async (req, res) => {
   const slug = `/ip/${req.params.slug}`;
   let sop = [];
 
@@ -40,11 +42,13 @@ ipRouter.get("/:slug", (req, res) => {
   if (sopMapping[slug]) {
     sop = sopMapping[slug];
   } else if (slug === "/ip/jumlah-app-desa") {
-    res.render("app-desa");
-    return;
+    const data = await prisma.usedApps.count();
+    return res.render("app-desa", { data: data });
   } else if (slug === "/ip/jumlah-desa-blankspot") {
-    res.render("desa-blankspot");
-    return;
+    const data = await prisma.desaBlankspot.count();
+    return res.render("desa-blankspot", { data: data });
+  } else if (slug === "/ip/pengajuan-alat-zoom") {
+    return res.render("pengajuan-zoom");
   }
 
   res.render("sop", { sop });

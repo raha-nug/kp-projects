@@ -2,12 +2,9 @@
 <html lang="en">
   <head>
     <%- include('components/headlink')%>
-    <title>jumlah desa blank spot</title>
+    <title>Jumlah Desa Blankspot</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="stylesheet"
-      href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" />
 
     <title>Document</title>
   </head>
@@ -18,185 +15,51 @@
       <div class="container d-flex justify-content-center">
         <div class="card shadow" style="width: 50rem">
           <div class="card-header">
-            <h2 class="text-center">Jumlah Desa Blank Spot</h2>
+            <h2 class="text-center">Jumlah Blank Spot Desa</h2>
           </div>
-          <div class="card-body">
-            <table
-              class="table table-hover table-borderless mt-5 pt-4 p-1 text-center"
-              id="jumlah_desa">
-              <thead class="table-primary">
-                <tr>
-                  <th>No</th>
-                  <th>Kecamatan</th>
-                  <th>Jumlah Desa</th>
-                  <th>Jumlah Desa Blank Spot</th>
-                  <th>Aksi</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>Cigalontang</td>
-                  <td>123</td>
-                  <td>14</td>
-                  <td>
-                    <!-- button -->
-                    <button
-                      type="button"
-                      class="btn btn-primary"
-                      data-bs-toggle="modal"
-                      data-bs-target="#exampleModal">
-                      Detail
-                    </button>
-                  </td>
-                  <!-- modal -->
-                  <div
-                    class="modal fade"
-                    id="exampleModal"
-                    tabindex="-1"
-                    aria-labelledby="exampleModalLabel"
-                    aria-hidden="true">
-                    <div class="modal-dialog">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h1 class="modal-title fs-5" id="exampleModalLabel">
-                            <b>Nama Desa</b>
-                          </h1>
-                          <button
-                            type="button"
-                            class="btn-close"
-                            data-bs-dismiss="modal"
-                            aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                          <ol>
-                            <li>desa a</li>
-                            <li>desa b</li>
-                            <li>desa b</li>
-                            <li>desa b</li>
-                          </ol>
-                        </div>
-                        <div class="modal-footer">
-                          <a
-                            href="/ip/jumlah_aplikasi_desa"
-                            class="btn btn-primary">
-                            OK
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </tr>
+          <div class="container mt-5">
+            <div class="d-flex justify-content-center gap-3 mb-5">
+              <div
+                class="card shadow-sm"
+                style="
+                  width: max-content;
+                  background-color: rgb(236, 148, 16);
+                  border: none;
+                ">
+                <div
+                  class="card-body d-flex align-items-center justify-content-between gap-3 text-white">
+                  <h5 class="card-title">Jumlah Desa</h5>
+                  <h5>:</h5>
+                  <h5>351</h5>
+                </div>
+              </div>
+              <div
+                class="card shadow-sm"
+                style="
+                  width: max-content;
+                  background-color: rgb(57, 28, 223);
+                  border: none;
+                ">
+                <div
+                  class="card-body d-flex align-items-center justify-content-between gap-3 text-white">
+                  <h5 class="card-title">Jumlah Desa Blank Spot</h5>
+                  <h5>:</h5>
+                  <h5><%=data%></h5>
+                </div>
+              </div>
+            </div>
 
-                <tr>
-                  <td>2</td>
-                  <td>Singaparna</td>
-                  <td>110</td>
-                  <td>10</td>
-                  <td>
-                    <!-- button -->
-                    <button
-                      type="button"
-                      class="btn btn-primary"
-                      data-bs-toggle="modal"
-                      data-bs-target="#exampleModal">
-                      Detail
-                    </button>
-                  </td>
-                  <!-- modal -->
-                  <div
-                    class="modal fade"
-                    id="exampleModal"
-                    tabindex="-1"
-                    aria-labelledby="exampleModalLabel"
-                    aria-hidden="true">
-                    <div class="modal-dialog">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h1 class="modal-title fs-5" id="exampleModalLabel">
-                            <b>Nama Desa</b>
-                          </h1>
-                          <button
-                            type="button"
-                            class="btn-close"
-                            data-bs-dismiss="modal"
-                            aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                          <ol>
-                            <li>desa a</li>
-                            <li>desa b</li>
-                            <li>desa c</li>
-                            <li>desa d</li>
-                          </ol>
-                        </div>
-                        <div class="modal-footer">
-                          <a
-                            href="/ip/jumlah_aplikasi_desa"
-                            class="btn btn-primary">
-                            OK
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </tr>
-
-                <tr>
-                  <td>3</td>
-                  <td>Padakembang</td>
-                  <td>14</td>
-                  <td>5</td>
-                  <td>
-                    <!-- button -->
-                    <button
-                      type="button"
-                      class="btn btn-primary"
-                      data-bs-toggle="modal"
-                      data-bs-target="#exampleModal">
-                      Detail
-                    </button>
-                  </td>
-                  <!-- modal -->
-                  <div
-                    class="modal fade"
-                    id="exampleModal"
-                    tabindex="-1"
-                    aria-labelledby="exampleModalLabel"
-                    aria-hidden="true">
-                    <div class="modal-dialog">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h1 class="modal-title fs-5" id="exampleModalLabel">
-                            <b>Nama Desa</b>
-                          </h1>
-                          <button
-                            type="button"
-                            class="btn-close"
-                            data-bs-dismiss="modal"
-                            aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                          <ol>
-                            <li>desa a</li>
-                            <li>desa b</li>
-                            <li>desa c</li>
-                            <li>desa d</li>
-                          </ol>
-                        </div>
-                        <div class="modal-footer">
-                          <a
-                            href="/ip/jumlah_aplikasi_desa"
-                            class="btn btn-primary">
-                            OK
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </tr>
-              </tbody>
-            </table>
+            <p>
+              Di Kabupaten Tasikmalaya, dari total 351 desa yang tersebar di
+              seluruh wilayah, terdapat <%=data%> desa yang masih tergolong
+              sebagai desa blank spot. Istilah blank spot ini merujuk pada
+              desa-desa yang belum memiliki akses yang memadai terhadap jaringan
+              komunikasi dan internet. Kondisi ini menjadi tantangan besar dalam
+              upaya pemerintah untuk mendorong digitalisasi dan meningkatkan
+              kualitas pelayanan publik di tingkat desa. Blank spot ini
+              berdampak signifikan pada kehidupan sehari-hari warga desa,
+              terutama dalam hal akses informasi dan komunikasi.
+            </p>
           </div>
         </div>
       </div>
@@ -237,17 +100,5 @@
     <!-- end Footer-->
 
     <script src="/js/bootstrap.bundle.min.js"></script>
-
-    <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-
-    <!-- DataTable JS -->
-    <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
-
-    <script>
-      $(document).ready(function () {
-        $("#jumlah_desa").DataTable();
-      });
-    </script>
   </body>
 </html>

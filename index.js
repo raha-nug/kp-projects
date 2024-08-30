@@ -6,11 +6,11 @@ const app = express();
 const path = require("path");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
+const verifyToken = require("./middleware/verify-token");
 
 const port = 3000;
 
-
-app.use(cookieParser())
+app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 app.set("view engine", "ejs");
@@ -36,7 +36,7 @@ app.get("/", (req, res) => {
   res.render("index", { bidang });
 });
 
-app.get("/uploads/:filename", (req, res) => {
+app.get("/uploads/:filename", verifyToken, (req, res) => {
   const filename = req.params.filename;
   const filepath = path.join(__dirname, "uploads", filename);
   res.sendFile(filepath);
