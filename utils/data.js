@@ -167,7 +167,65 @@ const bidang = [
   },
 ];
 
+const dataPegawai = [
+  {
+    name: "Kurnia Trisna Somantri, S.T, M.Kom.",
+    postition: "",
+    nip: "197604072010011013",
+    type: "PNS",
+  },
+  {
+    name: "Firman Saleh Nugraha Suhara, S.T.",
+    postition: "",
+    nip: "",
+    type: "PNS",
+  },
+  {
+    name: "Ai Siti Nurhasanah, S.T, M.M.",
+    postition: "",
+    nip: "19770515200642005",
+    type: "PNS",
+  },
+  {
+    name: "Ganjar Nugraha, A.Md",
+    postition: "",
+    nip: "1986070122211001",
+    type: "NON PNS",
+  },
+  {
+    name: "Agus Sandiyana, S.IP",
+    postition: "",
+    nip: "197608222007011005",
+    type: "PNS",
+  },
+  {
+    name: "Honest Panuntun",
+    postition: "",
+    nip: "198311092006041007",
+    type: "PNS",
+  },
+  {
+    name: "Eka Trimurwa Dyana, A.Md",
+    postition: "",
+    nip: "198508162024211005",
+    type: "NON PNS",
+  },
+  {
+    name: "Soni Maulana M, S.Kom",
+    postition: "",
+    nip: "",
+    type: "NON PNS",
+  },
+  {
+    name: "Mulky Hary Subawa, S.Kom",
+    postition: "",
+    nip: "",
+    type: "NON PNS",
+  },
+];
+
 module.exports = {
+  dataPegawai,
   sopCreateEmail,
   sopCreateEmailEGoverment,
   sopCreateDomain,

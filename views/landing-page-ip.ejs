@@ -29,10 +29,7 @@
     </div>
 
     <!-- informasi-->
-    <section
-      class="informasi"
-      id="about"
-      style="background-color: rgb(210, 218, 250)">
+    <section class="informasi" id="about">
       <div class="container-fluid p-5 pt-2">
         <div class="row mt-5">
           <div class="col-md-12">
@@ -43,7 +40,7 @@
                 <div class="row" style="text-align: justify">
                   <div class="col-md-6">
                     <button type="button" class="btn btn-success">
-                      About Us
+                      Tentang Kami
                     </button>
                     <h3 class="mt-2">Bidang Informatika dan Persandian</h3>
                     <p>
@@ -101,9 +98,58 @@
     </section>
     <!-- informasi end -->
 
+    <!-- perbub start -->
+    <section id="perbub">
+      <div class="container">
+        <div class="card">
+          <div class="card-body">
+            <h3>Ini Tampilan Untuk Perbub</h3>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- perbub end -->
+
+    <!-- struktur -->
+    <section
+      style="background-color: rgb(210, 218, 250)"
+      class="pb-5"
+      id="struktur">
+      <div class="container-fluid">
+        <div class="row mt-5">
+          <h4 class="text-center mt-5 pt-3" style="color: rgb(28, 28, 231)">
+            Struktur
+          </h4>
+          <div class="d-flex justify-content-center gap-4 pt-3">
+            <div class="card card col-md-3 shadow">
+              <div class="card-body text-center">
+                <h5 class="card-title">Jumlah Pegawai</h5>
+                <h4 class="card-text"><%=dataPegawai.length%></h4>
+              </div>
+            </div>
+
+            <div class="card card col-md-3 shadow">
+              <div class="card-body text-center">
+                <h5 class="card-title">Pegawai PNS</h5>
+                <h4 class="card-text"><%=pegawaiPns%></h4>
+              </div>
+            </div>
+
+            <div class="card card col-md-3 shadow">
+              <div class="card-body text-center">
+                <h5 class="card-title">Pegawai Non PNS</h5>
+                <h4 class="card-text"><%=pegawaiNonPns%></h4>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- end struktur -->
+
     <!-- Layanan -->
-    <section>
-      <div class="container-fluid" id="layanan">
+    <section id="layanan">
+      <div class="container-fluid">
         <div class="row mt-5">
           <div class="col-md-12 mt-5 p-5 pt-2">
             <h4 class="text-center mt-2" style="color: rgb(28, 28, 231)">
@@ -112,7 +158,6 @@
             <h2 class="text-center">Bidang Informatika Persandian</h2>
             <div
               class="d-flex justify-content-center gap-4 flex-wrap text-center mt-4">
-              
               <% layananIp.forEach(layanan=>{ %>
               <div
                 class="card shadow col-md-4 hover"
@@ -129,7 +174,6 @@
                 </div>
               </div>
               <% })%>
-
             </div>
           </div>
         </div>
@@ -138,8 +182,8 @@
     <!-- end layanan -->
 
     <!-- kerjasama -->
-    <section>
-      <div class="container-fluid" id="kerjasama">
+    <section id="kerjasama">
+      <div class="container-fluid">
         <div class="row mt-5">
           <h4 class="text-center mt-5 pt-3" style="color: rgb(28, 28, 231)">
             Kerjasama
@@ -186,9 +230,62 @@
     </section>
     <!-- end kerjasama -->
 
+    <!-- kegiatan -->
+    <section id="kegiatan">
+      <div class="container">
+        <div class="row mt-5">
+          <h4 class="text-center mt-5 pt-3" style="color: rgb(28, 28, 231)">
+            Kegiatan
+          </h4>
+          <h2 class="text-center">Bidang Informatika Persandian</h2>
+          <div class="d-flex justify-content-center">
+            <div
+              id="carouselExampleCaptions"
+              class="carousel slide"
+              style="width: 72rem"
+              data-bs-ride="carousel"
+              data-bs-interval="5000">
+              <div class="carousel-inner">
+                <% for (let i = 1; i <= 15; i++) { %>
+
+                <div class="carousel-item <%= i === 1 ? 'active' : '' %>">
+                  <img
+                    src="/images/kegiatan/<%= i %>.jpg"
+                    style="height: 32rem; width: 100%; object-fit: cover"
+                    alt="..." />
+                </div>
+                <% } %>
+              </div>
+              <button
+                class="carousel-control-prev"
+                type="button"
+                data-bs-target="#carouselExampleCaptions"
+                data-bs-slide="prev">
+                <span
+                  class="carousel-control-prev-icon"
+                  aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+              </button>
+              <button
+                class="carousel-control-next"
+                type="button"
+                data-bs-target="#carouselExampleCaptions"
+                data-bs-slide="next">
+                <span
+                  class="carousel-control-next-icon"
+                  aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- end kegiatan -->
+
     <!-- Faq -->
-    <section>
-      <div class="container" id="faq">
+    <section id="faq">
+      <div class="container">
         <div class="mt-5 p-1">
           <h4 class="text-center mt-5 pt-4" style="color: rgb(28, 28, 231)">
             FAQ

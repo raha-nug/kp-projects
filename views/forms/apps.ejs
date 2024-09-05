@@ -18,7 +18,7 @@
         <h5 class="card-header my-3 text-center bg-transparent">
           <b>Pendataan Penggunaan Aplikasi</b>
         </h5>
-        <form id="instansi" method="post" action="/ip/instansi-app">
+        <form id="instansi" method="post" action="/ip/dashboard/instansi-app">
           <div class="card-body">
             <input type="hidden" id="type" name="type" value="<%= type %>" />
             <div class="mb-3">
@@ -372,7 +372,7 @@
           urlEncodedData.append(key, value);
         }
 
-        fetch("/ip/instansi-app", {
+        fetch("/ip/dashboard/instansi-app", {
           method: "POST",
           body: urlEncodedData,
         })
@@ -387,7 +387,7 @@
               title: data.message,
               icon: "success",
             }).then(() => {
-              window.location.href = `/ip/instansi-app/${type}`;
+              window.location.href = `/ip/dashboard/instansi-app/${type}`;
             });
 
             submitButton.disabled = false; // Re-enable the button

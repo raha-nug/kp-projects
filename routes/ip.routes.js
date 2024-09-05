@@ -10,6 +10,7 @@ const {
   sopCreateServer,
 
   layananIP,
+  dataPegawai,
 } = require("../utils/data");
 const dashboardRouter = require("./dashboard.routes");
 const authRouter = require("./auth/auth.routes");
@@ -17,7 +18,19 @@ const authRouter = require("./auth/auth.routes");
 const ipRouter = express.Router();
 
 ipRouter.get("/", (req, res) => {
-  res.render("landing-page-ip", { layananIp: layananIP });
+  const pegawaiPns = dataPegawai.filter(
+    (pegawai) => pegawai.type === "PNS"
+  ).length;
+  const pegawaiNonPns = dataPegawai.filter(
+    (pegawai) => pegawai.type === "NON PNS"
+  ).length;
+
+  res.render("landing-page-ip", {
+    layananIp: layananIP,
+    pegawaiPns: pegawaiPns,
+    pegawaiNonPns: pegawaiNonPns,
+    dataPegawai: dataPegawai,
+  });
 });
 
 ipRouter.use("/dashboard", dashboardRouter);

@@ -18,7 +18,7 @@
         <h5 class="card-header my-3 text-center bg-transparent">
           <b>Edit Data Desa Blankspot</b>
         </h5>
-        <form action="/ip/blankspot" method="post" id="blankspot">
+        <form action="/ip/dashboard/blankspot" method="post" id="blankspot">
           <div class="card-body">
             <div class="mb-3">
               <label for="name" class="form-label">Nama Lengkap</label>
@@ -401,7 +401,7 @@
 
         formData.append("operational", operational);
 
-        fetch(`/ip/blankspot/${id}/edit`, {
+        fetch(`/ip/dashboard/blankspot/${id}/edit`, {
           method: "POST",
           body: formData,
         })
@@ -416,7 +416,7 @@
               title: data.message,
               icon: "success",
             }).then(() => {
-              window.location.href = `/ip/blankspot`;
+              window.location.href = `/ip/dashboard/blankspot`;
             });
 
             submitButton.disabled = false; // Re-enable the button

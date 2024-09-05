@@ -4,10 +4,8 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
 const createAdmin = async (req, res) => {
-
   try {
-
-    const email = process.env.ADMIN_EMAIL
+    const email = process.env.ADMIN_EMAIL;
     const password = process.env.ADMIN_PASSWORD;
     const user = await prisma.users.findUnique({
       where: {
@@ -26,12 +24,13 @@ const createAdmin = async (req, res) => {
 
     const newUser = await prisma.users.create({
       data: {
-        ...req.body,
+        name: "Admin",
+        email,
         password: hashedPassword,
       },
     });
 
-    res.redirect('/ip/auth/login')
+    res.redirect("/ip/auth/login");
   } catch (error) {
     res.status(500).send({
       status: "error",
