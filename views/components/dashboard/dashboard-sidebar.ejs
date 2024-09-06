@@ -2,7 +2,9 @@
 <aside id="sidebar" class="sidebar">
   <ul class="sidebar-nav" id="sidebar-nav">
     <li class="nav-item">
-      <a class="nav-link <%= type == 'dashboard' ? '': 'collapsed'%>" href="/ip/dashboard">
+      <a
+        class="nav-link <%= type == 'dashboard' ? '': 'collapsed'%>"
+        href="/ip/dashboard">
         <i class="bi bi-grid"></i>
         <span>Dashboard</span>
       </a>
@@ -41,6 +43,7 @@
         </li>
       </ul>
     </li>
+
     <!-- End Components Nav -->
 
     <li class="nav-item">
@@ -51,7 +54,57 @@
         <span>Dinas</span>
       </a>
     </li>
+
     <!-- End Blank Page Nav -->
+
+    <li class="nav-item">
+      <a
+        class="nav-link <%=  type == 'example' ? '': 'collapsed'%>"
+        data-bs-target="#itsm"
+        data-bs-toggle="collapse"
+        href="#">
+        <i class="bi bi-menu-button-wide"></i>
+        <span>ITSM</span>
+        <i class="bi bi-chevron-down ms-auto"></i>
+      </a>
+      <ul
+        id="itsm"
+        class="nav-content collapse <%= type == 'example' ? 'show': ''%>"
+        data-bs-parent="#sidebar-nav">
+        <li>
+          <a
+            href="/ip/dashboard/example"
+            class="<%= type == 'example' ? 'active': ''%>">
+            <i class="bi bi-circle"></i>
+            <span>Informasi Dokumentasi</span>
+          </a>
+        </li>
+        <li>
+          <a
+            href="/ip/dashboard/instansi-app/desa"
+            class="<%= type == 'desa' ? 'active': ''%>">
+            <i class="bi bi-circle"></i>
+            <span>Jaringan Intra Pemerintah</span>
+          </a>
+        </li>
+        <li>
+          <a
+            href="/ip/dashboard/instansi-app/desa"
+            class="<%= type == 'desa' ? 'active': ''%>">
+            <i class="bi bi-circle"></i>
+            <span>Server Data Center</span>
+          </a>
+        </li>
+        <li>
+          <a
+            href="/ip/dashboard/instansi-app/desa"
+            class="<%= type == 'desa' ? 'active': ''%>">
+            <i class="bi bi-circle"></i>
+            <span>Pembuatan akun email</span>
+          </a>
+        </li>
+      </ul>
+    </li>
   </ul>
 </aside>
 <!-- End Sidebar-->

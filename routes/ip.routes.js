@@ -55,7 +55,13 @@ ipRouter.get("/:slug", async (req, res) => {
   if (sopMapping[slug]) {
     sop = sopMapping[slug];
   } else if (slug === "/ip/jumlah-app-desa") {
-    const data = await prisma.usedApps.count();
+    const data = await prisma.usedApps.count({
+      where: {
+        instansi: {
+          type: "desa",
+        },
+      },
+    });
     return res.render("app-desa", { data: data });
   } else if (slug === "/ip/jumlah-desa-blankspot") {
     const data = await prisma.desaBlankspot.count();

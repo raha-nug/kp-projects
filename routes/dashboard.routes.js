@@ -14,5 +14,8 @@ dashboardRouter.get("/", getSummary);
 dashboardRouter.use("/", desaBlankspotRouter);
 dashboardRouter.use("/", instansiAppRouter);
 dashboardRouter.use("/", appsRouter);
+dashboardRouter.get("/example", (req, res) => {
+  res.render("dashboard", { type: "example", name: req.user.name });
+});
 
 module.exports = dashboardRouter;

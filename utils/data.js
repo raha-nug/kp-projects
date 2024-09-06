@@ -8,7 +8,7 @@ const layananIP = [
     link: "/ip/pengajuan-sideka",
   },
   {
-    name: "Pengajuan Dosting",
+    name: "Pengajuan Hosting",
     link: "/ip/pengajuan-hosting",
   },
   {

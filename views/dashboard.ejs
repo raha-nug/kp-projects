@@ -38,6 +38,12 @@
           <%- include('pages/dashboard-page',{data: data, type: type}) %>
           <!-- end render list app -->
 
+          <% }else if (type == 'example'){ %>
+
+          <!-- render blankspot -->
+          <%- include('pages/example', {type: type}) %>
+          <!-- end render list app -->
+
           <% } %>
         </div>
       </section>

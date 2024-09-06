@@ -3,18 +3,22 @@ const prisma = new PrismaClient();
 
 const getSummary = async (req, res) => {
   try {
-    const allApps = await prisma.instansi.count();
-    const allDesaApps = await prisma.instansi.count({
+    const allApps = await prisma.usedApps.count();
+    const allDesaApps = await prisma.usedApps.count({
       where: {
-        type: "desa",
-      },
-    });
-    const allDinasApps = await prisma.instansi.count({
-      where: {
-        type: "dinas",
+        instansi: {
+          type: "desa",
+        },
       },
     });
 
+    const allDinasApps = await prisma.usedApps.count({
+      where: {
+        instansi: {
+          type: "dinas",
+        },
+      },
+    });
     const allBlankspot = await prisma.desaBlankspot.count();
 
     const data = {
