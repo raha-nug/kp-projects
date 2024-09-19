@@ -37,6 +37,10 @@ ipRouter.use("/dashboard", dashboardRouter);
 
 ipRouter.use("/auth", authRouter);
 
+ipRouter.get('/perbub',(req,res)=>{
+  res.render('perbub')
+})
+
 ipRouter.get("/:slug", async (req, res) => {
   const slug = `/ip/${req.params.slug}`;
   let sop = [];
